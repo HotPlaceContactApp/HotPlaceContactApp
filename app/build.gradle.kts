@@ -47,6 +47,9 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    // SplashScreen
+    implementation("androidx.core:core-splashscreen:1.0.1")
+
     // ViewPager2
     implementation("androidx.viewpager2:viewpager2:1.0.0")
 }
