@@ -2,7 +2,7 @@ package com.example.hotplacecontactapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.viewpager2.widget.ViewPager2
 import com.example.hotplacecontactapp.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -12,36 +12,32 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         setContentView(binding.root)
 
         initViewPager()
     }
 
     private fun initViewPager() {
+        val tabTextList = listOf("Contact", "My Page")
+
         //ViewPager2 Adapter 셋팅
-        var viewPager2Adatper = ViewPager2Adapter(this)
-        viewPager2Adatper.addFragment(ContactListFragment())
-        viewPager2Adatper.addFragment(MyPageFragment())
+        var viewPager2Adapter = ViewPager2Adapter(this)
+        viewPager2Adapter.addFragment(ContactListFragment())
+        viewPager2Adapter.addFragment(MyPageFragment())
 
         //Adapter 연결
         binding.mainViewPager.apply {
-            adapter = viewPager2Adatper
-
-            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                override fun onPageSelected(position: Int) {
-                    super.onPageSelected(position)
-                }
-            })
+            adapter = viewPager2Adapter
+            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {})
         }
 
         //ViewPager, TabLayout 연결
         TabLayoutMediator(binding.mainNavigationView, binding.mainViewPager) { tab, position ->
-            when (position) {
-                0 -> tab.text = "Contact"
-                1 -> tab.text = "My Page"
-            }
+            tab.text = tabTextList[position]
         }.attach()
     }
 }

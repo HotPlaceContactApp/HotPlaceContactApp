@@ -6,4 +6,12 @@
     </style>
 
     <style name="Theme.HotPlaceContactApp" parent="Base.Theme.HotPlaceContactApp" />
+
+    <!-- splash screen Theme -->
+    <style name="AppTheme.Splash" parent="Theme.SplashScreen">
+        <item name="android:windowSplashScreenBackground">@color/black</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_logo</item>
+        <item name="android:windowSplashScreenAnimationDuration">1000</item>
+        <item name="postSplashScreenTheme">@style/Theme.HotPlaceContactApp</item>
+    </style>
 </resources>
