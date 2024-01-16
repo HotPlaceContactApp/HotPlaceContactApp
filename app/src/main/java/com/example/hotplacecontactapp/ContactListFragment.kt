@@ -14,7 +14,6 @@ class ContactListFragment : Fragment() {
     private var _binding: FragmentContactListBinding? = null
     private val binding get() = _binding!!
 
-
     private var param1: String? = null
     private var param2: String? = null
 
@@ -51,7 +50,6 @@ class ContactListFragment : Fragment() {
          }
     }
      */
-
 
     private fun initView() {
 
