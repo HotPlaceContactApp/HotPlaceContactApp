@@ -2,4 +2,15 @@
     <string name="app_name">HotPlaceContactApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="list_name">list name</string>
+    <string name="phoneMain">휴대전화</string>
+    <string name="phone1">전화번호1</string>
+    <string name="phone2">전화번호2</string>
+    <string name="phone3">전화번호3</string>
+    <string name="phone4">전화번호4</string>
+    <string name="email">이메일</string>
+    <string name="insta">인스타그램</string>
+    <string name="website">웹사이트</string>
+    <string name="memo">메모</string>
+    <string name="edit">수정</string>
 </resources>
