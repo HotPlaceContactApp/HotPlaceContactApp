@@ -14,7 +14,6 @@ class ContactListFragment : Fragment() {
     private var _binding: FragmentContactListBinding? = null
     private val binding get() = _binding!!
 
-
     private var param1: String? = null
     private var param2: String? = null
 
@@ -32,6 +31,33 @@ class ContactListFragment : Fragment() {
     ): View? {
         _binding = FragmentContactListBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initView()
+    }
+
+    /*
+    코드의 가독성을 위해 initView() 라는 함수 안에 모든 기능을 함수 형태로 정의해서 정리해요~
+
+    예시) setFloatingActionButton()
+
+    private fun setFloatingActionButton() {
+        binding.fabAddContact.setOnClickListener {
+                ...
+         }
+    }
+     */
+
+    private fun initView() {
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {
