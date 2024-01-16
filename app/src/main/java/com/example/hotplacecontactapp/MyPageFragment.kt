@@ -36,8 +36,13 @@ class MyPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initView()
     }
 
+    private fun initView() {
+        TODO("Not yet implemented")
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
