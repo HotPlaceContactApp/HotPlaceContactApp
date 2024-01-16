@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/addContact_cv_storePhoto"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        app:strokeWidth="1dp"
+        app:cardCornerRadius="120dp"
+        app:cardElevation="0dp">
+        <ImageView
+            android:id="@+id/addContact_iv_storePhoto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/addcontact_ic_addpicture"/>
+    </com.google.android.material.card.MaterialCardView>
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        app:strokeWidth="1dp"-->
+<!--        app:cardCornerRadius="120dp"-->
+<!--        app:cardElevation="0dp"-->
+<!--        android:outlineProvider="none">-->
+<!--        <ImageView-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="120dp"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:src="@drawable/ic_launcher_background"/>-->
+<!--    </androidx.cardview.widget.CardView>-->
+
+    <EditText
+        android:id="@+id/addContact_tv_storeName"
+        android:layout_marginTop="16dp"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:hint="가게 이름"/>
+
+    <EditText
+        android:id="@+id/addContact_tv_storePhone"
+        android:layout_marginTop="16dp"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:inputType="phone"
+        android:hint="가게 연락처 (숫자만 입력)"/>
+
+
+    <EditText
+        android:id="@+id/addContact_tv_storeAddress"
+        android:layout_marginTop="16dp"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:hint="가게 주소"/>
+
+    <EditText
+        android:id="@+id/addContact_tv_storeInsta"
+        android:layout_marginTop="16dp"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:hint="가게 인스타주소"/>
+
+    <LinearLayout
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/addContact_btn_negative"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="취소"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/addContact_btn_positive"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="확인"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
