@@ -1,10 +1,13 @@
 package com.example.hotplacecontactapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
 import com.example.hotplacecontactapp.databinding.FragmentContactListBinding
 
 private const val ARG_PARAM1 = "param1"
@@ -52,6 +55,27 @@ class ContactListFragment : Fragment() {
      */
 
     private fun initView() {
+        Log.d("ContactListFragment", "check0")
+        val testlist= mutableListOf<ContactData>()
+        testlist.add(ContactData(R.drawable.ic_launcher_foreground,"0000000000000","s0","s0","s0",true))
+        testlist.add(ContactData(R.drawable.ic_launcher_foreground,"111111111111","s1","s1","s1",true))
+        testlist.add(ContactData(R.drawable.ic_launcher_foreground,"22222222222222","s2","s2","s2",true))
+        testlist.add(ContactData(R.drawable.ic_launcher_foreground,"333333333333","s3","s3","s3",true))
+        testlist.add(ContactData(R.drawable.ic_launcher_foreground,"444444444444","s4","s4","s4",true))
+        testlist.add(ContactData(R.drawable.ic_launcher_foreground,"5555555555","s5","s5","s5",true))
+        testlist.add(ContactData(R.drawable.ic_launcher_foreground,"66666666666666","s6","s6","s6",true))
+        testlist.add(ContactData(R.drawable.ic_launcher_foreground,"777777777777777","s0","s0","s0",true))
+        testlist.add(ContactData(R.drawable.ic_launcher_foreground,"8888888888888","s1","s1","s1",true))
+        testlist.add(ContactData(R.drawable.ic_launcher_foreground,"9999999999999","s2","s2","s2",true))
+        testlist.add(ContactData(R.drawable.ic_launcher_foreground,"aaaaaaaaaaaaa","s3","s3","s3",true))
+        testlist.add(ContactData(R.drawable.ic_launcher_foreground,"bbbbbbbbbbbbb","s4","s4","s4",true))
+        testlist.add(ContactData(R.drawable.ic_launcher_foreground,"cccccccccc","s5","s5","s5",true))
+        testlist.add(ContactData(R.drawable.ic_launcher_foreground,"dddddddddddddddd","s6","s6","s6",true))
+
+        val adapter=Adapter(testlist)
+        binding.loRecyclerview.adapter=adapter
+        binding.loRecyclerview.layoutManager=LinearLayoutManager(requireContext())
+
 
     }
 
