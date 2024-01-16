@@ -9,7 +9,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 // 10조 맛집 연락처 앱 파이팅!!
 
-
 class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
@@ -22,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViewPager() {
-        val tabTextList = listOf("Contact", "My Page")
+        val tabTextList = listOf("맛집 목록", "나의 정보")
 
         //ViewPager2 Adapter 셋팅
         var viewPager2Adapter = ViewPager2Adapter(this)
