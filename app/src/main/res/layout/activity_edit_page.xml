@@ -48,7 +48,7 @@
                             android:layout_height="match_parent"
                             android:contentDescription="user's profile image in a circle shape"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/ic_launcher_background" />
+                            android:background="@color/white"/>
 
                         <TextView
                             android:id="@+id/textPfp"

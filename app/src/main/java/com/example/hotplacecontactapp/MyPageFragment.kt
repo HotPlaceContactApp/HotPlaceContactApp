@@ -42,6 +42,11 @@ class MyPageFragment : Fragment() {
     }
 
     private fun initView() {
+        updateProfileData()
+        checkPfp()
+        addData()
+        checkVisablity()
+
         binding.textEdit.setOnClickListener {
             val intent = Intent(activity, EditPageActivity::class.java)
             startActivity(intent)
@@ -54,6 +59,22 @@ class MyPageFragment : Fragment() {
             val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("sms:${binding.textPhoneNumber.text}"))
             startActivity(intent)
         }
+    }
+
+    private fun updateProfileData() {
+        TODO("Not yet implemented")
+    }
+
+    private fun checkPfp() {
+        TODO("Not yet implemented")
+    }
+
+    private fun addData() {
+        TODO("Not yet implemented")
+    }
+
+    private fun checkVisablity() {
+        TODO("Not yet implemented")
     }
 
     override fun onDestroyView() {
