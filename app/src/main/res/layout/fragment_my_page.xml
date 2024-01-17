@@ -36,9 +36,9 @@
                         android:id="@+id/imgPfp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:contentDescription="user's profile image in a circle shape"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_launcher_background"
-                        android:contentDescription="user's profile image in a circle shape"/>
+                        android:src="@drawable/ic_launcher_background" />
 
                     <TextView
                         android:id="@+id/textPfp"
@@ -77,9 +77,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
+                            android:contentDescription="image of a speech bubble representing a message icon"
                             android:padding="10dp"
-                            android:src="@drawable/ic_message"
-                            android:contentDescription="image of a speech bubble representing a message icon"/>
+                            android:src="@drawable/ic_message" />
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
@@ -95,9 +95,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
+                            android:contentDescription="image of a phone handle representing a call icon"
                             android:padding="10dp"
-                            android:src="@drawable/ic_call"
-                            android:contentDescription="image of a phone handle representing a call icon"/>
+                            android:src="@drawable/ic_call" />
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
@@ -245,10 +245,10 @@
                 android:layout_height="30dp"
                 android:layout_margin="20dp"
                 android:adjustViewBounds="true"
+                android:contentDescription="image of an angle pointing to the left as a back button"
                 android:src="@drawable/ic_back"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="image of an angle pointing to the left as a back button"/>
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

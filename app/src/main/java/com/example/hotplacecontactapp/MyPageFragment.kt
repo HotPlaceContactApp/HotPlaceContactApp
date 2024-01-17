@@ -1,5 +1,7 @@
 package com.example.hotplacecontactapp
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -41,7 +43,17 @@ class MyPageFragment : Fragment() {
     }
 
     private fun initView() {
-        TODO("Not yet implemented")
+        binding.textEdit.setOnClickListener {
+            val intent = Intent()
+        }
+        binding.cardCall.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${binding.textPhoneNumber.text}"))
+            startActivity(intent)
+        }
+        binding.cardMessage.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("sms:${binding.textPhoneNumber.text}"))
+            startActivity(intent)
+        }
     }
 
     override fun onDestroyView() {
