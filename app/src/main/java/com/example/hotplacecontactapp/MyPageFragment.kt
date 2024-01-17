@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.hotplacecontactapp.databinding.FragmentContactListBinding
 import com.example.hotplacecontactapp.databinding.FragmentMyPageBinding
 
 private const val ARG_PARAM1 = "param1"
@@ -44,7 +43,8 @@ class MyPageFragment : Fragment() {
 
     private fun initView() {
         binding.textEdit.setOnClickListener {
-            val intent = Intent()
+            val intent = Intent(activity, EditPageActivity::class.java)
+            startActivity(intent)
         }
         binding.cardCall.setOnClickListener {
             val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${binding.textPhoneNumber.text}"))
