@@ -21,8 +21,8 @@ private const val ARG_PARAM2 = "param2"
 class ContactDetailFragment : Fragment() {
 
     private var _binding: ActivityContactDetailFragmentBinding? = null
+    private val binding get() = _binding
 
-    private val binding get() = _binding!!
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -40,8 +40,13 @@ class ContactDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = ActivityContactDetailFragmentBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
         // Inflate the layout for this fragment
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     companion object {
