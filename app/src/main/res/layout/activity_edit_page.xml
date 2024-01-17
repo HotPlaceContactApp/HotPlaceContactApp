@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyPageFragment">
+    android:orientation="vertical"
+    tools:context=".EditPageActivity">
 
     <ScrollView
         android:id="@+id/scrollMyPage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/viewDivider"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/conlayMyPage"
@@ -61,7 +64,8 @@
                         android:layout_height="40sp"
                         app:cardCornerRadius="1000dp"
                         app:layout_constraintBottom_toBottomOf="@id/cardPfp"
-                        app:layout_constraintEnd_toEndOf="@id/cardPfp">
+                        app:layout_constraintEnd_toEndOf="@id/cardPfp"
+                        android:background="@color/white">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -69,6 +73,7 @@
                             android:padding="5dp"
                             android:src="@drawable/ic_add" />
                     </androidx.cardview.widget.CardView>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
@@ -264,7 +269,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="45dp"
                         android:hint="메모"
-                        android:inputType="text"
+                        android:inputType="textMultiLine"
                         android:textSize="20sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -282,4 +287,46 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-</FrameLayout>
+    <View
+        android:id="@+id/viewDivider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/linlaySaveOrQuit"
+        app:layout_constraintTop_toBottomOf="@id/scrollMyPage"/>
+
+    <LinearLayout
+        android:id="@+id/linlaySaveOrQuit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewDivider">
+
+        <TextView
+            android:id="@+id/textExitButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="취소"
+            android:textSize="30sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="15dp"
+            android:background="#A8A8A8" />
+
+        <TextView
+            android:id="@+id/textSaveButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="저장"
+            android:textSize="30sp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
