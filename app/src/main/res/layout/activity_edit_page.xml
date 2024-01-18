@@ -59,6 +59,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cardAddImg"
                         android:layout_width="40sp"
                         android:layout_height="40sp"
                         app:cardCornerRadius="1000dp"

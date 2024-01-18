@@ -7,6 +7,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.hotplacecontactapp.databinding.FragmentMyPageBinding
@@ -21,12 +23,47 @@ class MyPageFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private var imgUri: Uri? = null
     private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val data: Intent? = result.data
-            binding.textName.text=data?.getStringExtra("test")
+            imgUri=Uri.parse(data?.getStringExtra("img"))
+            binding.imgPfp.setImageURI(imgUri)
+            binding.textName.text=data?.getStringExtra("name")
+            binding.textPhoneNumber.text=data?.getStringExtra("phone")
+            binding.textEmail.text=data?.getStringExtra("email")
+            if(data?.getStringExtra("email").isNullOrEmpty().not()){
+                binding.linlayEmail.visibility= VISIBLE
+            }
+            else{
+                binding.linlayEmail.visibility= GONE
+            }
+            binding.textInsta.text=data?.getStringExtra("insta")
+            if(data?.getStringExtra("insta").isNullOrEmpty().not()){
+                binding.linlayInsta.visibility= VISIBLE
+            }
+            else{
+                binding.linlayInsta.visibility= GONE
+            }
+            binding.textWebsite.text=data?.getStringExtra("website")
+            if(data?.getStringExtra("website").isNullOrEmpty().not()){
+                binding.linlayWebsite.visibility= VISIBLE
+            }
+            else{
+                binding.linlayWebsite.visibility= GONE
+            }
+            binding.textMemo.text=data?.getStringExtra("memo")
+            if(data?.getStringExtra("memo").isNullOrEmpty().not()){
+                binding.linlayMemo.visibility= VISIBLE
+            }
+            else{
+                binding.linlayMemo.visibility= GONE
+            }
+            checkPfp()
         }
     }
+
+    private val defaultStringList : List<String> = listOf("홍길동", "010-1234-5678")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,13 +88,18 @@ class MyPageFragment : Fragment() {
     }
 
     private fun initView() {
-//        updateProfileData()
-//        checkPfp()
-//        addData()
-//        checkVisablity()
+        initProfileData()
+        checkPfp()
 
         binding.textEdit.setOnClickListener {
             val intent = Intent(activity, EditPageActivity::class.java)
+            intent.putExtra("img", imgUri.toString())
+            intent.putExtra("name", binding.textName.text.toString())
+            intent.putExtra("phone", binding.textPhoneNumber.text.toString())
+            intent.putExtra("email", binding.textEmail.text.toString())
+            intent.putExtra("insta", binding.textInsta.text.toString())
+            intent.putExtra("website", binding.textWebsite.text.toString())
+            intent.putExtra("memo", binding.textMemo.text.toString())
             resultLauncher.launch(intent)
         }
         binding.cardCall.setOnClickListener {
@@ -70,20 +112,23 @@ class MyPageFragment : Fragment() {
         }
     }
 
-    private fun updateProfileData() {
-        TODO("Not yet implemented")
+    private fun initProfileData() {
+        binding.imgPfp.setImageURI(imgUri)
+        binding.textName.text=defaultStringList[0]
+        binding.textPhoneNumber.text=defaultStringList[1]
+        binding.linlayEmail.visibility=GONE
+        binding.linlayInsta.visibility=GONE
+        binding.linlayWebsite.visibility=GONE
+        binding.linlayMemo.visibility=GONE
     }
 
     private fun checkPfp() {
-        TODO("Not yet implemented")
-    }
-
-    private fun addData() {
-        TODO("Not yet implemented")
-    }
-
-    private fun checkVisablity() {
-        TODO("Not yet implemented")
+        if(imgUri==null){
+            binding.textPfp.text=binding.textName.text.first().toString()
+        }
+        else{
+            binding.textPfp.text=""
+        }
     }
 
     override fun onDestroyView() {
