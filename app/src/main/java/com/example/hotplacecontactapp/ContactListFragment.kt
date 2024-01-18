@@ -1,13 +1,14 @@
 package com.example.hotplacecontactapp
 
-import android.annotation.SuppressLint
 import android.net.Uri
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.hotplacecontactapp.databinding.FragmentContactListBinding
@@ -59,13 +60,44 @@ class ContactListFragment : Fragment(), AddContactListener {
      */
 
     private fun initView() {
-
         adapter = Adapter(ContactManager.getList())
         binding.loRecyclerview.adapter = adapter
         binding.loRecyclerview.layoutManager = LinearLayoutManager(requireContext())
 
         setAddContact()
 
+        adapter.itemClick = object : Adapter.ItemClick {
+            override fun onClick(view: View, position: Int) {
+                Log.d("ListFragment", "List clicked")
+                val data = adapter.mItems[position]
+                val fragmentToDetail = ContactDetailFragment.newInstance(arrayListOf(data))
+                requireActivity().supportFragmentManager.beginTransaction()     //트랜잭션
+                    .replace(R.id.lo_fragmentLayout, fragmentToDetail)
+                    .addToBackStack(null)       //이전의 트랜잭션을 스택에 추가, 뒤로가기 누를시 이전의 프래그먼트로 돌아감
+                    .commit()
+                Log.d("ListFragment", "data=$data")
+            }
+        }
+
+
+        adapter.itemLongClick = object : Adapter.ItemLongClick {
+            override fun onLongClick(view: View, position: Int) {
+                Log.d("ListFragment", "List LongClicked")
+                val ad = AlertDialog.Builder(requireContext())
+                ad.setIcon(R.drawable.ic_launcher_foreground)
+                ad.setTitle("목록 삭제")
+                ad.setMessage("목록을 정말로 삭제하시겠습니까?")
+                ad.setPositiveButton("확인") { dialog, _ ->
+                    Log.d("ListFragment", "position=$position")
+                    ContactManager.contactList.removeAt(position)
+                    Log.d("ListFragment", "List Removed")
+                    adapter.notifyDataSetChanged()
+                }
+                ad.setNegativeButton("취소", null)
+                ad.show()
+
+            }
+        }
     }
 
     private fun setAddContact() {

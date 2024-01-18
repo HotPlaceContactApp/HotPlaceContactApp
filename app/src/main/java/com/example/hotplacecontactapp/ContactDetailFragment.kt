@@ -1,38 +1,36 @@
 package com.example.hotplacecontactapp
 
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.hotplacecontactapp.databinding.ActivityContactDetailFragmentBinding
-import com.example.hotplacecontactapp.databinding.FragmentMyPageBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
+
+//private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [BlankFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class ContactDetailFragment : Fragment() {
 
     private var _binding: ActivityContactDetailFragmentBinding? = null
 
     private val binding get() = _binding!!
 
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    //    private var param1: String? = null
+    private var param2: ArrayList<ContactData> = ArrayList()
+//    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+//            param1 = it.getString(ARG_PARAM1)
+            param2 = it.getParcelableArrayList(ARG_PARAM2)!!
+//            param2 = it.getString(ARG_PARAM2)
+            Log.d("DetailFragment", "param2=$param2")
         }
     }
 
@@ -45,22 +43,40 @@ class ContactDetailFragment : Fragment() {
         // Inflate the layout for this fragment
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initView()
+    }
+
+    private fun initView() {
+        val contactList: MutableList<ContactData> = mutableListOf()
+//        val position= param2?.toInt()
+        Log.d("DetailFragment", "initView() param2=$param2")
+
+        val img = binding.ivRestaurantLogo
+        val name = binding.tvDetailName
+        val num = binding.tvDetailPhonenumber
+        val address = binding.tvDetailAddress
+        val instaId = binding.tvDetailInstarAddress
+
+
+
+        img.setImageURI(param2[0].profileImage)
+        name.text = param2[0].name
+        num.text = param2[0].phoneNumber
+        instaId.text = param2[0].instaAddress
+        address.text = param2[0].address
+
+
+    }
+
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment BlankFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(param2: ArrayList<ContactData>) =
             ContactDetailFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putParcelableArrayList(ARG_PARAM2, param2)
                 }
             }
     }
