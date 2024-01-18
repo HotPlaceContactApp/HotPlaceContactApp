@@ -60,11 +60,15 @@ class ContactDetailFragment : Fragment() {
 //        val position= param2?.toInt()
         Log.d("DetailFragment", "initView() param2=$param2")
 
+        binding.igDetailBackbutton.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
+        }
+
         val img = binding.ivDetailProfile
         val name = binding.tvDetailName
         val num = binding.tvDetailPhonenumber
         val address = binding.tvDetailAddress
-        val instaId = binding.tvDetailInstarAddress
+        val instaId = binding.tvDetailInstarUri
 
 
 
