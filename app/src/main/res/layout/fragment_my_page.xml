@@ -37,15 +37,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:contentDescription="user's profile image in a circle shape"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:scaleType="centerCrop" />
 
                     <TextView
                         android:id="@+id/textPfp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="A"
                         android:textSize="100sp" />
                 </androidx.cardview.widget.CardView>
 
@@ -61,7 +59,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="2dp"
-                        android:text="김나도"
                         android:textSize="30sp" />
 
                     <androidx.cardview.widget.CardView
@@ -127,7 +124,6 @@
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="45dp"
-                            android:text="010-1111-1111"
                             android:textSize="20sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -152,7 +148,6 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="45dp"
-                        android:text="email@address.com"
                         android:textSize="20sp" />
                 </LinearLayout>
 
@@ -176,7 +171,6 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="45dp"
-                        android:text="instagram.com/asdf"
                         android:textSize="20sp" />
                 </LinearLayout>
 
@@ -200,7 +194,6 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="45dp"
-                        android:text="www.asdf.com"
                         android:textSize="20sp" />
                 </LinearLayout>
 
@@ -224,7 +217,6 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="45dp"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
                         android:textSize="20sp" />
                 </LinearLayout>
             </LinearLayout>
