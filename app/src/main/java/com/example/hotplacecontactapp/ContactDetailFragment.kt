@@ -23,6 +23,7 @@ class ContactDetailFragment : Fragment() {
     private var _binding: ActivityContactDetailFragmentBinding? = null
 
     private val binding get() = _binding!!
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
