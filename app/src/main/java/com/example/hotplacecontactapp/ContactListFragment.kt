@@ -127,4 +127,8 @@ class ContactListFragment : Fragment(), AddContactListener {
     override fun onContactAdded() {
     adapter.notifyDataSetChanged()
     }
+
+
+
+
 }
