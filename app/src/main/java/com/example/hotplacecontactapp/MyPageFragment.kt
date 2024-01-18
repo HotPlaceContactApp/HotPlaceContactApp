@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -77,7 +76,7 @@ class MyPageFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMyPageBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -124,7 +123,7 @@ class MyPageFragment : Fragment() {
     }
 
     private fun checkPfp() {
-        if(imgUri==null){
+        if((imgUri?.equals(null) != false)or((imgUri.toString() == "null"))){
             binding.textPfp.text=binding.textName.text.first().toString()
         }
         else{
@@ -135,16 +134,5 @@ class MyPageFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MyPageFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }
