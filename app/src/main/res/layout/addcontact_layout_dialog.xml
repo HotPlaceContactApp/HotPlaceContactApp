@@ -8,8 +8,8 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/addContact_cv_storePhoto"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
         app:strokeWidth="1dp"
@@ -19,66 +19,88 @@
             android:id="@+id/addContact_iv_storePhoto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerInside"
+            android:scaleType="centerCrop"
             android:src="@drawable/addcontact_ic_addpicture"/>
     </com.google.android.material.card.MaterialCardView>
-
-<!--    <androidx.cardview.widget.CardView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        app:strokeWidth="1dp"-->
-<!--        app:cardCornerRadius="120dp"-->
-<!--        app:cardElevation="0dp"-->
-<!--        android:outlineProvider="none">-->
-<!--        <ImageView-->
-<!--            android:layout_width="120dp"-->
-<!--            android:layout_height="120dp"-->
-<!--            android:scaleType="centerCrop"-->
-<!--            android:src="@drawable/ic_launcher_background"/>-->
-<!--    </androidx.cardview.widget.CardView>-->
+    <TextView
+        android:paddingStart="4dp"
+        android:id="@+id/addContact_tv_photoError"
+        android:layout_marginBottom="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="14sp"/>
 
     <EditText
-        android:id="@+id/addContact_tv_storeName"
-        android:layout_marginTop="16dp"
+        android:id="@+id/addContact_et_storeName"
+        android:layout_marginTop="8dp"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:hint="가게 이름"/>
+        android:hint="@string/placeholder_name"/>
+    <TextView
+        android:paddingStart="4dp"
+        android:id="@+id/addContact_tv_nameError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="14sp"/>
 
     <EditText
-        android:id="@+id/addContact_tv_storePhone"
-        android:layout_marginTop="16dp"
+        android:id="@+id/addContact_et_storePhone"
+        android:layout_marginTop="8dp"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textStyle="bold"
         android:inputType="phone"
-        android:hint="가게 연락처 (숫자만 입력)"/>
+        android:maxLength="15"
+        android:hint="@string/palceholder_phone" />
+    <TextView
+        android:paddingStart="4dp"
+        android:id="@+id/addContact_tv_phoneError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="14sp"/>
 
 
     <EditText
-        android:id="@+id/addContact_tv_storeAddress"
-        android:layout_marginTop="16dp"
+        android:id="@+id/addContact_et_storeAddress"
+        android:layout_marginTop="8dp"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:hint="가게 주소"/>
+        android:hint="@string/placeholder_address"/>
+    <TextView
+        android:paddingStart="4dp"
+        android:id="@+id/addContact_tv_addressError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="14sp"/>
 
     <EditText
-        android:id="@+id/addContact_tv_storeInsta"
-        android:layout_marginTop="16dp"
+        android:id="@+id/addContact_et_storeInsta"
+        android:layout_marginTop="8dp"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:hint="가게 인스타주소"/>
+        android:hint="@string/placeholder_insta"/>
+    <TextView
+        android:paddingStart="4dp"
+        android:id="@+id/addContact_tv_instaError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="14sp"/>
 
     <LinearLayout
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <Button
@@ -86,7 +108,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="취소"/>
+            android:text="@string/btn_negative"/>
 
         <View
             android:layout_width="0dp"
@@ -98,7 +120,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="확인"/>
+            android:text="@string/btn_positive"/>
 
 
     </LinearLayout>
