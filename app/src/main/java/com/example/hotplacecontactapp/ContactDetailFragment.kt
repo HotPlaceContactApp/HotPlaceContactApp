@@ -1,5 +1,6 @@
 package com.example.hotplacecontactapp
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,11 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import com.example.hotplacecontactapp.databinding.ActivityContactDetailFragmentBinding
-import com.example.hotplacecontactapp.databinding.FragmentMyPageBinding
 
 
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
+//private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 class ContactDetailFragment : Fragment() {
@@ -20,15 +19,17 @@ class ContactDetailFragment : Fragment() {
     private var _binding: ActivityContactDetailFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private var param1: ArrayList<ContactData> = ArrayList()
-    private var param2: String? = null
+    //    private var param1: String? = null
+    private var param2: ArrayList<ContactData> = ArrayList()
+//    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getParcelableArrayList(ARG_PARAM1)!!
-            param2 = it.getString(ARG_PARAM2)
-            Log.d("detail", "${param1}")
+//            param1 = it.getString(ARG_PARAM1)
+            param2 = it.getParcelableArrayList(ARG_PARAM2)!!
+//            param2 = it.getString(ARG_PARAM2)
+            Log.d("DetailFragment", "param2=$param2")
         }
     }
 
@@ -43,48 +44,45 @@ class ContactDetailFragment : Fragment() {
 
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val contactList:MutableList<ContactData> = mutableListOf()
-
-        val img = param1[0].profileImage
-        val phone = param1[0].phoneNumber
-        val insta = param1[0].instaAddress
-        val address = param1[0].address
-        val name = param1[0].name
-
-        binding.igDetailProfile.setImageURI(img)
-        binding.tvDetailPhonenumber.setText(phone)
-        binding.tvDetailInstarUri.setText(insta)
-        binding.tvDetailAddress.setText(address)
-        binding.tvDetailName.setText(name)
-
-
-
-        Log.d("detail", "onViewCreated")
-
-
-
-//        프레그먼트 뒤로가기
-        binding.igDetailBackbutton.setOnClickListener {
-            activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
-
-            Log.d("detail", "onCreateView")
-        }
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initView()
+    }
+
+    private fun initView() {
+        val contactList: MutableList<ContactData> = mutableListOf()
+//        val position= param2?.toInt()
+        Log.d("DetailFragment", "initView() param2=$param2")
+
+        val img = binding.ivDetailProfile
+        val name = binding.tvDetailName
+        val num = binding.tvDetailPhonenumber
+        val address = binding.tvDetailAddress
+        val instaId = binding.tvDetailInstarAddress
+
+
+
+        img.setImageURI(param2[0].profileImage)
+        name.text = param2[0].name
+        num.text = param2[0].phoneNumber
+        instaId.text = param2[0].instaAddress
+        address.text = param2[0].address
+
+
+    }
+
     companion object {
         @JvmStatic
-        fun newInstance(param1: ArrayList<ContactData>) =
+        fun newInstance(param2: ArrayList<ContactData>) =
             ContactDetailFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelableArrayList(ARG_PARAM1, param1)
+                    putParcelableArrayList(ARG_PARAM2, param2)
                 }
             }
     }

@@ -3,7 +3,7 @@ package com.example.hotplacecontactapp
 import android.net.Uri
 
 object ContactManager {
-    private val contactList: MutableList<ContactData> = mutableListOf()
+    val contactList: MutableList<ContactData> = mutableListOf()
 
     init {
         contactList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_lotteria), "0000000000000", "s0", "s0", "s0", true))
