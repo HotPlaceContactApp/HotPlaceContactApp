@@ -13,22 +13,25 @@ import com.example.hotplacecontactapp.databinding.ItemRecyclerViewListBinding
 class Adapter(val mItems: MutableList<ContactData>) : RecyclerView.Adapter<Adapter.Holder>() {
 
     interface ItemClick {
-        fun onClick(view : View, position : Int)
-    }
-    interface ItemLongClick {
-        fun onLongClick(view : View, position : Int)
-    }
-    interface StarClick {
-        fun onClick(view : View, position : Int)
+        fun onClick(view: View, position: Int)
     }
 
-    var itemClick : ItemClick? = null
-    var itemLongClick : ItemLongClick? = null
-    var starClick : StarClick? = null
+    interface ItemLongClick {
+        fun onLongClick(view: View, position: Int)
+    }
+
+    interface StarClick {
+        fun onClick(view: View, position: Int)
+    }
+
+    var itemClick: ItemClick? = null
+    var itemLongClick: ItemLongClick? = null
+    var starClick: StarClick? = null
     private var isFavorite = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val binding = ItemRecyclerViewListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemRecyclerViewListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return Holder(binding)
     }
@@ -46,26 +49,32 @@ class Adapter(val mItems: MutableList<ContactData>) : RecyclerView.Adapter<Adapt
         holder.iconImageView.setImageURI(mItems[position].profileImage)
         holder.name.text = mItems[position].name
 
-        isFavorite= mItems[position].isFavorite
+        isFavorite = mItems[position].isFavorite
         Log.d("Adapter", "onbindViewholder position = $position")
         Log.d("Adapter", "OnbindViewholder isfavortie = $isFavorite")
-        holder.star.setImageResource(if(isFavorite){R.drawable.ic_yellow_star} else{R.drawable.ic_empty_star})
+        holder.star.setImageResource(
+            if (isFavorite) {
+                R.drawable.ic_yellow_star
+            } else {
+                R.drawable.ic_empty_star
+            }
+        )
 
 //        holder.star.setOnClickListener {
 //            starClick?.onClick(it,position)
 //        }
 
         holder.star.setOnClickListener {
-            Log.d("Adapter","Star clicked")
+            Log.d("Adapter", "Star clicked")
             Log.d("Adapter", "position=$position")
             Log.d("Adapter", "isfavortie=$isFavorite")
-            isFavorite= mItems[position].isFavorite
-            if(!isFavorite){
+            isFavorite = mItems[position].isFavorite
+            if (!isFavorite) {
                 holder.star.setImageResource(R.drawable.ic_yellow_star)
-                mItems[position].isFavorite=true
-            }else{
+                mItems[position].isFavorite = true
+            } else {
                 holder.star.setImageResource(R.drawable.ic_empty_star)
-                mItems[position].isFavorite=false
+                mItems[position].isFavorite = false
             }
             notifyItemChanged(position)
         }
@@ -80,9 +89,10 @@ class Adapter(val mItems: MutableList<ContactData>) : RecyclerView.Adapter<Adapt
         return mItems.size
     }
 
-    inner class Holder(val binding: ItemRecyclerViewListBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class Holder(val binding: ItemRecyclerViewListBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         val iconImageView = binding.ivListProfile
         val name = binding.tvListName
-        val star=binding.ivStar
+        val star = binding.ivStar
     }
 }

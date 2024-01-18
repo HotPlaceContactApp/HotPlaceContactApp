@@ -20,7 +20,7 @@ class ContactDetailFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-//    private var param1: String? = null
+    //    private var param1: String? = null
     private var param2: ArrayList<ContactData> = ArrayList()
 //    private var param2: String? = null
 
@@ -28,9 +28,9 @@ class ContactDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
 //            param1 = it.getString(ARG_PARAM1)
-            param2=it.getParcelableArrayList(ARG_PARAM2)!!
+            param2 = it.getParcelableArrayList(ARG_PARAM2)!!
 //            param2 = it.getString(ARG_PARAM2)
-            Log.d("DetailFragment","param2=$param2")
+            Log.d("DetailFragment", "param2=$param2")
         }
     }
 
@@ -49,16 +49,16 @@ class ContactDetailFragment : Fragment() {
         initView()
     }
 
-    private fun initView(){
+    private fun initView() {
         val contactList: MutableList<ContactData> = mutableListOf()
 //        val position= param2?.toInt()
-        Log.d("DetailFragment","initView() param2=$param2")
+        Log.d("DetailFragment", "initView() param2=$param2")
 
         val img = binding.ivRestaurantLogo
-        val name=binding.tvDetailName
-        val num=binding.tvDetailPhonenumber
-        val address=binding.tvDetailAddress
-        val instaId=binding.tvDetailInstarAddress
+        val name = binding.tvDetailName
+        val num = binding.tvDetailPhonenumber
+        val address = binding.tvDetailAddress
+        val instaId = binding.tvDetailInstarAddress
 
 
 
@@ -66,7 +66,7 @@ class ContactDetailFragment : Fragment() {
         name.text = param2[0].name
         num.text = param2[0].phoneNumber
         instaId.text = param2[0].instaAddress
-        address.text=param2[0].address
+        address.text = param2[0].address
 
 
     }

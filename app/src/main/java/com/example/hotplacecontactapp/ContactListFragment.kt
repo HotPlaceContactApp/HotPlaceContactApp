@@ -58,16 +58,16 @@ class ContactListFragment : Fragment() {
 
     private fun initView() {
         val testList = mutableListOf<ContactData>()
-        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/"+R.drawable.detail_burger_lotteria), "0000000000000", "0000000000000", "0000000000000", "0000000000000", false))
-        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/"+R.drawable.detail_burger_kfc), "1111111111111", "1111111111111", "1111111111111", "1111111111111", true))
-        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/"+R.drawable.detail_burger_king), "2222222222222", "2222222222222", "2222222222222", "2222222222222", false))
-        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/"+R.drawable.detail_burger_mcdonald), "3333333333333", "3333333333333", "3333333333333", "3333333333333", true))
-        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/"+R.drawable.detail_burger_momstouch), "4444444444444", "4444444444444", "4444444444444", "4444444444444", false))
-        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/"+R.drawable.detail_burger_mosburger), "5555555555555", "5555555555555", "5555555555555", "5555555555555", true))
-        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/"+R.drawable.detail_chicken_60), "6666666666666", "s6", "s6", "s6", false))
-        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/"+R.drawable.detail_chicken_bbq), "7777777777777", "s0", "s0", "s0", true))
-        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/"+R.drawable.detail_burger_lotteria), "8888888888888", "s1", "s1", "s1", false))
-        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/"+R.drawable.detail_burger_lotteria), "9999999999999", "s2", "s2", "s2", true))
+        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_lotteria), "0000000000000", "0000000000000", "0000000000000", "0000000000000", false))
+        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_kfc), "1111111111111", "1111111111111", "1111111111111", "1111111111111", true))
+        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_king), "2222222222222", "2222222222222", "2222222222222", "2222222222222", false))
+        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_mcdonald), "3333333333333", "3333333333333", "3333333333333", "3333333333333", true))
+        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_momstouch), "4444444444444", "4444444444444", "4444444444444", "4444444444444", false))
+        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_mosburger), "5555555555555", "5555555555555", "5555555555555", "5555555555555", true))
+        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_chicken_60), "6666666666666", "s6", "s6", "s6", false))
+        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_chicken_bbq), "7777777777777", "s0", "s0", "s0", true))
+        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_lotteria), "8888888888888", "s1", "s1", "s1", false))
+        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_lotteria), "9999999999999", "s2", "s2", "s2", true))
 
 
         val adapter = Adapter(testList)
@@ -87,51 +87,38 @@ class ContactListFragment : Fragment() {
 //            }
 //        }
 
-
-
-
-
-
-
-
-
-        adapter.itemClick=object : Adapter.ItemClick{
+        adapter.itemClick = object : Adapter.ItemClick {
             override fun onClick(view: View, position: Int) {
-                Log.d("ListFragment","List clicked")
+                Log.d("ListFragment", "List clicked")
                 val data = adapter.mItems[position]
-                val fragmentToDetail=ContactDetailFragment.newInstance(arrayListOf(data))
+                val fragmentToDetail = ContactDetailFragment.newInstance(arrayListOf(data))
                 requireActivity().supportFragmentManager.beginTransaction()     //트랜잭션
                     .replace(R.id.lo_fragmentLayout, fragmentToDetail)
                     .addToBackStack(null)       //이전의 트랜잭션을 스택에 추가, 뒤로가기 누를시 이전의 프래그먼트로 돌아감
                     .commit()
-                Log.d("ListFragment","data=$data")
+                Log.d("ListFragment", "data=$data")
             }
         }
 
 
         adapter.itemLongClick = object : Adapter.ItemLongClick {
             override fun onLongClick(view: View, position: Int) {
-                Log.d("ListFragment","Bofore testlist.size=${testList.size}")
+                Log.d("ListFragment", "Bofore testlist.size=${testList.size}")
                 val ad = AlertDialog.Builder(requireContext())
                 ad.setIcon(R.drawable.ic_launcher_foreground)
                 ad.setTitle("목록 삭제")
                 ad.setMessage("목록을 정말로 삭제하시겠습니까?")
                 ad.setPositiveButton("확인") { dialog, _ ->
-                    Log.d("ListFragment","position=$position")
+                    Log.d("ListFragment", "position=$position")
                     testList.removeAt(position)
                     adapter.notifyDataSetChanged()
-                    Log.d("ListFragment","After testlist.size=${testList.size}")
+                    Log.d("ListFragment", "After testlist.size=${testList.size}")
                 }
                 ad.setNegativeButton("취소", null)
                 ad.show()
 
             }
         }
-
-
-
-
-
     }
 
     override fun onDestroyView() {
