@@ -46,7 +46,7 @@
                             android:id="@+id/imgPfp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:contentDescription="user's profile image in a circle shape"
+                            android:contentDescription="@string/cD_imgPfp"
                             android:scaleType="centerCrop"
                             android:background="@color/white"/>
 
@@ -67,10 +67,12 @@
                         android:background="@color/white">
 
                         <ImageView
+                            android:id="@+id/imgPlus"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="5dp"
-                            android:src="@drawable/ic_add" />
+                            android:src="@drawable/ic_add"
+                            android:contentDescription="@string/cD_imgPlus"/>
                     </androidx.cardview.widget.CardView>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -87,7 +89,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="2dp"
-                        android:textSize="30sp" />
+                        android:textSize="30sp"
+                        android:autofillHints="name"
+                        android:hint="@string/hint_name"
+                        android:inputType="textPersonName"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -116,23 +121,25 @@
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="20dp"
-                            android:hint="휴대전화번호"
+                            android:hint="@string/hint_phone"
                             android:inputType="phone"
-                            android:textSize="20sp" />
+                            android:textSize="20sp"
+                            android:autofillHints="phone"/>
 
                         <ImageView
                             android:id="@+id/imgMinus"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_marginEnd="25dp"
-                            android:src="@drawable/ic_minus" />
+                            android:src="@drawable/ic_minus"
+                            android:contentDescription="@string/cD_imgMinus"/>
                     </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="40dp"
-                        android:text="+ 전화번호 추가"
+                        android:text="@string/add_phone"
                         android:textSize="20sp" />
                 </LinearLayout>
 
@@ -156,9 +163,10 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="45dp"
-                        android:hint="이메일 주소"
+                        android:hint="@string/hint_email"
                         android:inputType="textWebEmailAddress"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:autofillHints="emailAddress"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -181,8 +189,10 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="45dp"
-                        android:hint="인스타그램 주소"
-                        android:textSize="20sp" />
+                        android:hint="@string/hint_insta"
+                        android:textSize="20sp"
+                        android:autofillHints="instagram url"
+                        android:inputType="text"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -205,9 +215,10 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="45dp"
-                        android:hint="웹사이트 주소"
+                        android:hint="@string/hint_website"
                         android:inputType="textWebEmailAddress"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:autofillHints="website url"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -230,9 +241,10 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="45dp"
-                        android:hint="메모"
+                        android:hint="@string/hint_memo"
                         android:inputType="textMultiLine"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:autofillHints="memo"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -242,7 +254,7 @@
                 android:layout_height="30dp"
                 android:layout_margin="20dp"
                 android:adjustViewBounds="true"
-                android:contentDescription="image of an angle pointing to the left as a back button"
+                android:contentDescription="@string/cD_imgBack"
                 android:src="@drawable/ic_back"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -272,7 +284,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="20dp"
-            android:text="취소"
+            android:text="@string/quit"
             android:textSize="30sp" />
 
         <View
@@ -288,7 +300,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="20dp"
-            android:text="저장"
+            android:text="@string/save"
             android:textSize="30sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
