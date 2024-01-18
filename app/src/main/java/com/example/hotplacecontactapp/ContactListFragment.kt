@@ -109,16 +109,6 @@ class ContactListFragment : Fragment() {
         }
 
 
-
-
-
-
-
-
-
-
-
-
         adapter.itemLongClick = object : Adapter.ItemLongClick {
             override fun onLongClick(view: View, position: Int) {
                 Log.d("ListFragment","Bofore testlist.size=${testList.size}")
@@ -129,7 +119,7 @@ class ContactListFragment : Fragment() {
                 ad.setPositiveButton("확인") { dialog, _ ->
                     Log.d("ListFragment","position=$position")
                     testList.removeAt(position)
-                    adapter.notifyItemRemoved(position)
+                    adapter.notifyDataSetChanged()
                     Log.d("ListFragment","After testlist.size=${testList.size}")
                 }
                 ad.setNegativeButton("취소", null)
