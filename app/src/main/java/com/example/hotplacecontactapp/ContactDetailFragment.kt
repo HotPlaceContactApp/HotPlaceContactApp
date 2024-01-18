@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import com.example.hotplacecontactapp.databinding.ActivityContactDetailFragmentBinding
 import com.example.hotplacecontactapp.databinding.FragmentMyPageBinding
 
@@ -53,7 +54,7 @@ class ContactDetailFragment : Fragment() {
         val address = param1[0].address
         val name = param1[0].name
 
-        binding.igDetailProfile.setImageResource(img)
+        binding.igDetailProfile.setImageURI(img)
         binding.tvDetailPhonenumber.setText(phone)
         binding.tvDetailInstarUri.setText(insta)
         binding.tvDetailAddress.setText(address)
@@ -67,10 +68,7 @@ class ContactDetailFragment : Fragment() {
 
 //        프레그먼트 뒤로가기
         binding.igDetailBackbutton.setOnClickListener {
-            activity?.supportFragmentManager
-                ?.beginTransaction()
-                ?.remove(this)
-                ?.commit()
+            activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
 
             Log.d("detail", "onCreateView")
         }
