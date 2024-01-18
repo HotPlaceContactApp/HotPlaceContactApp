@@ -19,7 +19,12 @@ class ContactDetailFragment : Fragment() {
     private var _binding: ActivityContactDetailFragmentBinding? = null
     private val binding get() = _binding!!
 
+<<<<<<< HEAD
     private var param1: ArrayList<ContactData> = ArrayList()
+=======
+    // TODO: Rename and change types of parameters
+    private var param1: String? = null
+>>>>>>> 75c8942f55ea4208b91c7780b8f719dce6076f81
     private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

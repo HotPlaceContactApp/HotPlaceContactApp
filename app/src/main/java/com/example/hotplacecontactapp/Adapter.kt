@@ -12,10 +12,10 @@ import com.example.hotplacecontactapp.databinding.ItemRecyclerViewListBinding
 class Adapter(val mItems: MutableList<ContactData>) : RecyclerView.Adapter<Adapter.Holder>() {
 
     interface ItemClick {
-        fun onClick(view : View, position : Int)
+        fun onClick(view: View, position: Int)
     }
 
-    var itemClick : ItemClick? = null
+    var itemClick: ItemClick? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ItemRecyclerViewListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -26,7 +26,7 @@ class Adapter(val mItems: MutableList<ContactData>) : RecyclerView.Adapter<Adapt
         holder.itemView.setOnClickListener {  //클릭이벤트추가부분
             itemClick?.onClick(it, position)
         }
-        holder.iconImageView.setImageResource(mItems[position].profileImage)
+        holder.iconImageView.setImageURI(mItems[position].profileImage)
         holder.name.text = mItems[position].name
     }
 
@@ -42,4 +42,6 @@ class Adapter(val mItems: MutableList<ContactData>) : RecyclerView.Adapter<Adapt
         val iconImageView = binding.ivListProfile
         val name = binding.tvListName
     }
+
+
 }

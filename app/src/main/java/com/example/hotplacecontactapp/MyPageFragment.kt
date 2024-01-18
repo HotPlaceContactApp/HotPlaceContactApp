@@ -37,7 +37,11 @@ class MyPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+<<<<<<< HEAD
 //        initView()
+=======
+        // initView()
+>>>>>>> 75c8942f55ea4208b91c7780b8f719dce6076f81
     }
 
     private fun initView() {
