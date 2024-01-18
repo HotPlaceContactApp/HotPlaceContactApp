@@ -1,6 +1,7 @@
 package com.example.hotplacecontactapp
 
 import android.net.Uri
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,24 +10,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
 import com.example.hotplacecontactapp.databinding.FragmentContactListBinding
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class ContactListFragment : Fragment() {
+
+class ContactListFragment : Fragment(), AddContactListener {
     private var _binding: FragmentContactListBinding? = null
     private val binding get() = _binding!!
 
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var adapter: Adapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
-//            param2=it.getParcelable(ARG_PARAM2)!!
         }
     }
 
@@ -57,35 +60,11 @@ class ContactListFragment : Fragment() {
      */
 
     private fun initView() {
-        val testList = mutableListOf<ContactData>()
-        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_lotteria), "0000000000000", "0000000000000", "0000000000000", "0000000000000", false))
-        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_kfc), "1111111111111", "1111111111111", "1111111111111", "1111111111111", true))
-        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_king), "2222222222222", "2222222222222", "2222222222222", "2222222222222", false))
-        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_mcdonald), "3333333333333", "3333333333333", "3333333333333", "3333333333333", true))
-        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_momstouch), "4444444444444", "4444444444444", "4444444444444", "4444444444444", false))
-        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_mosburger), "5555555555555", "5555555555555", "5555555555555", "5555555555555", true))
-        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_chicken_60), "6666666666666", "s6", "s6", "s6", false))
-        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_chicken_bbq), "7777777777777", "s0", "s0", "s0", true))
-        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_lotteria), "8888888888888", "s1", "s1", "s1", false))
-        testList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_lotteria), "9999999999999", "s2", "s2", "s2", true))
-
-
-        val adapter = Adapter(testList)
+        adapter = Adapter(ContactManager.getList())
         binding.loRecyclerview.adapter = adapter
         binding.loRecyclerview.layoutManager = LinearLayoutManager(requireContext())
 
-//        adapter.starClick=object : Adapter.StarClick{
-//            override fun onClick(view: View, position: Int) {
-//                var isfavorite=adapter.mItems[position].isFavorite==true
-//
-//                if(!isfavorite){
-//
-//                    adapter.mItems[position].isFavorite=true
-//                    isfavorite=true
-//                }
-//
-//            }
-//        }
+        setAddContact()
 
         adapter.itemClick = object : Adapter.ItemClick {
             override fun onClick(view: View, position: Int) {
@@ -103,21 +82,29 @@ class ContactListFragment : Fragment() {
 
         adapter.itemLongClick = object : Adapter.ItemLongClick {
             override fun onLongClick(view: View, position: Int) {
-                Log.d("ListFragment", "Bofore testlist.size=${testList.size}")
+                Log.d("ListFragment", "List LongClicked")
                 val ad = AlertDialog.Builder(requireContext())
                 ad.setIcon(R.drawable.ic_launcher_foreground)
                 ad.setTitle("목록 삭제")
                 ad.setMessage("목록을 정말로 삭제하시겠습니까?")
                 ad.setPositiveButton("확인") { dialog, _ ->
                     Log.d("ListFragment", "position=$position")
-                    testList.removeAt(position)
+                    ContactManager.contactList.removeAt(position)
+                    Log.d("ListFragment", "List Removed")
                     adapter.notifyDataSetChanged()
-                    Log.d("ListFragment", "After testlist.size=${testList.size}")
                 }
                 ad.setNegativeButton("취소", null)
                 ad.show()
 
             }
+        }
+    }
+
+    private fun setAddContact() {
+        binding.fabAddContact.setOnClickListener {
+            val addContactDialog = AddContactDialogFragment()
+            addContactDialog.listener = this
+            addContactDialog.show(requireActivity().supportFragmentManager, "AddContactDialog")
         }
     }
 
@@ -128,12 +115,18 @@ class ContactListFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String) =
+        fun newInstance(param1: String, param2: String) =
             ContactListFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
+                    putString(ARG_PARAM2, param2)
                 }
             }
     }
+
+    override fun onContactAdded() {
+        adapter.notifyDataSetChanged()
+    }
+
+
 }

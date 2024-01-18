@@ -13,7 +13,7 @@ import com.example.hotplacecontactapp.databinding.ItemRecyclerViewListBinding
 class Adapter(val mItems: MutableList<ContactData>) : RecyclerView.Adapter<Adapter.Holder>() {
 
     interface ItemClick {
-        fun onClick(view: View, position: Int)
+        fun onClick(view : View, position : Int)
     }
 
     interface ItemLongClick {
@@ -30,9 +30,7 @@ class Adapter(val mItems: MutableList<ContactData>) : RecyclerView.Adapter<Adapt
     private var isFavorite = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val binding =
-            ItemRecyclerViewListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
+        val binding = ItemRecyclerViewListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return Holder(binding)
     }
 
@@ -80,7 +78,6 @@ class Adapter(val mItems: MutableList<ContactData>) : RecyclerView.Adapter<Adapt
         }
     }
 
-
     override fun getItemId(position: Int): Long {
         return position.toLong()
     }
@@ -89,8 +86,7 @@ class Adapter(val mItems: MutableList<ContactData>) : RecyclerView.Adapter<Adapt
         return mItems.size
     }
 
-    inner class Holder(val binding: ItemRecyclerViewListBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class Holder(val binding: ItemRecyclerViewListBinding) : RecyclerView.ViewHolder(binding.root) {
         val iconImageView = binding.ivListProfile
         val name = binding.tvListName
         val star = binding.ivStar
