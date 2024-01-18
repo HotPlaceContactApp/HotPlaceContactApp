@@ -76,6 +76,8 @@ class ContactListFragment : Fragment() {
         testList.add(ContactData(R.drawable.detail_pizza_banolim, "fffffffffffff", "s8", "s8", "www.ajkldjfkljlklldfkladfk.dkfjlkajldkfjlksdlf/ajdsklfjakldjfklsjdflkja;ldkjflkjskldkdialktnld", false))
         testList.add(ContactData(R.drawable.detail_pizza_domino, "ggggggggggggg", "s9", "s9", "www.ajkldjfkljlklldfkladfk.dkfjlkajldkfjlksdlf/ajdsklfjakldjfklsjdflkja;ldkjflkjskldkdialktnld", true))
 
+
+
         val adapter = Adapter(testList)
         binding.loRecyclerview.adapter = adapter
         binding.loRecyclerview.layoutManager = LinearLayoutManager(requireContext())
@@ -83,38 +85,14 @@ class ContactListFragment : Fragment() {
 
         adapter.itemClick = object : Adapter.ItemClick {
             override fun onClick(view: View, position: Int) {
-//                val bundle = Bundle()
-//                bundle.putString("key", "value")
-//
-//                val fragmentB = ContactDetailFragment()
-//                fragmentB.setArguments(bundle)
-
-//                val bundle = Bundle()
-//                bundle.putString("frag", testList[position])
                 val dataToSend = adapter.mItems[position]
                 val fragment = ContactDetailFragment.newInstance(arrayListOf(dataToSend))
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.main_layout, fragment)
                     .addToBackStack(null)
                     .commit()
-
-
-//                val bundle = Bundle()
-//                bundle.putString("key", "value")
-
-//                val passBundleBFragment = PassBundleBFragment()
-//                passBundleBFragment.arguments = bundle parentFragmentManager.beginTransaction()
-//                    .replace(R.id.fragment_container_bundle, PassBundleFragment())
-//                    .commit()
-
-//                setFragmentResult("ListCar2AfterFragment", bundleOf(
-//                    "mygetData1" to testList[position].name.toString(),
-//                    "mygetData2" to testList[position])
-//                )
             }
         }
-
-
     }
 
     override fun onDestroyView() {
