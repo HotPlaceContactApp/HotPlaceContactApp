@@ -1,17 +1,23 @@
 package com.example.hotplacecontactapp
 
-import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
+import android.media.AudioAttributes
+import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.NotificationCompat
 import androidx.fragment.app.DialogFragment
 import com.example.hotplacecontactapp.databinding.AddcontactLayoutDialogBinding
 
@@ -21,7 +27,6 @@ class AddContactDialogFragment : DialogFragment() {
     private var _binding: AddcontactLayoutDialogBinding? = null
     private val binding get() = _binding!!
     var listener: AddContactListener? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         isCancelable = true
@@ -68,6 +73,7 @@ class AddContactDialogFragment : DialogFragment() {
                     instaAddress = addContactEtStoreInsta.text.toString(),
                     isFavorite = false
                 )
+
 
                 validAdd(addData)
             }
