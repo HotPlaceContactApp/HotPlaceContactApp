@@ -17,12 +17,14 @@ import com.example.hotplacecontactapp.databinding.FragmentContactListBinding
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
+
 class ContactListFragment : Fragment(), AddContactListener {
     private var _binding: FragmentContactListBinding? = null
     private val binding get() = _binding!!
 
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var adapter: Adapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +61,7 @@ class ContactListFragment : Fragment(), AddContactListener {
      */
 
     private fun initView() {
-        val adapter = Adapter(ContactManager.getList())
+        adapter = Adapter(ContactManager.getList())
         binding.loRecyclerview.adapter = adapter
         binding.loRecyclerview.layoutManager = LinearLayoutManager(requireContext())
 
@@ -120,5 +122,9 @@ class ContactListFragment : Fragment(), AddContactListener {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onContactAdded() {
+    adapter.notifyDataSetChanged()
     }
 }
