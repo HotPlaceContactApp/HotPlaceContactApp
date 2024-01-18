@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ContactDetailFragment">
 
 
@@ -31,6 +32,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:id="@+id/iv_restaurantLogo"
                     android:scaleType="centerCrop"
                     android:src="@drawable/detail_burger_king" />
 
@@ -52,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="전화번호"
+                android:text="전화번호: "
                 android:textSize="20sp"
                 android:layout_marginStart="30dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +75,7 @@
                 android:id="@+id/tv_detail_address_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="가게주소"
+                android:text="가게주소 :"
                 android:textSize="20sp"
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="30dp"

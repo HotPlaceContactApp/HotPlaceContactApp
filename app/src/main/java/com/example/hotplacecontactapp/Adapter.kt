@@ -14,11 +14,17 @@ class Adapter(val mItems: MutableList<ContactData>) : RecyclerView.Adapter<Adapt
     interface ItemClick {
         fun onClick(view : View, position : Int)
     }
+    interface StarClick {
+        fun onClick(view : View, position : Int)
+    }
 
     var itemClick : ItemClick? = null
+    var starClick : StarClick? = null
+    private var isFavorite = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ItemRecyclerViewListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
         return Holder(binding)
     }
 
@@ -26,8 +32,28 @@ class Adapter(val mItems: MutableList<ContactData>) : RecyclerView.Adapter<Adapt
         holder.itemView.setOnClickListener {  //클릭이벤트추가부분
             itemClick?.onClick(it, position)
         }
-        holder.iconImageView.setImageResource(mItems[position].profileImage)
+        holder.iconImageView.setImageURI(mItems[position].profileImage)
         holder.name.text = mItems[position].name
+
+        isFavorite= mItems[position].isFavorite==true
+        holder.star.setImageResource(if(isFavorite){R.drawable.ic_yellow_star} else{R.drawable.ic_empty_star})
+
+//        holder.star.setOnClickListener {
+//            starClick?.onClick(it,position)
+//        }
+
+        holder.star.setOnClickListener {
+            if(!isFavorite){
+                holder.star.setImageResource(R.drawable.ic_yellow_star)
+                mItems[position].isFavorite=true
+                isFavorite=true
+            }else{
+                holder.star.setImageResource(R.drawable.ic_empty_star)
+                mItems[position].isFavorite=false
+                isFavorite=false
+            }
+            notifyItemChanged(position)
+        }
     }
 
     override fun getItemId(position: Int): Long {
@@ -41,5 +67,6 @@ class Adapter(val mItems: MutableList<ContactData>) : RecyclerView.Adapter<Adapt
     inner class Holder(val binding: ItemRecyclerViewListBinding) : RecyclerView.ViewHolder(binding.root) {
         val iconImageView = binding.ivListProfile
         val name = binding.tvListName
+        val star=binding.ivStar
     }
 }
