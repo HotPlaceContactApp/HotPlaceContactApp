@@ -1,5 +1,6 @@
 package com.example.hotplacecontactapp
 
+
 import android.net.Uri
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -64,7 +65,6 @@ class ContactListFragment : Fragment(), AddContactListener {
         binding.loRecyclerview.adapter = adapter
         binding.loRecyclerview.layoutManager = LinearLayoutManager(requireContext())
 
-        setAddContact()
 
         adapter.itemClick = object : Adapter.ItemClick {
             override fun onClick(view: View, position: Int) {
@@ -125,8 +125,7 @@ class ContactListFragment : Fragment(), AddContactListener {
     }
 
     override fun onContactAdded() {
-        adapter.notifyDataSetChanged()
+    adapter.notifyDataSetChanged()
     }
-
-
+    val dd= ""
 }

@@ -7,17 +7,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import com.example.hotplacecontactapp.databinding.ActivityContactDetailFragmentBinding
 
 
 //private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-
 class ContactDetailFragment : Fragment() {
 
     private var _binding: ActivityContactDetailFragmentBinding? = null
-
     private val binding get() = _binding!!
 
     //    private var param1: String? = null
@@ -41,6 +40,13 @@ class ContactDetailFragment : Fragment() {
         _binding = ActivityContactDetailFragmentBinding.inflate(inflater, container, false)
         return binding.root
         // Inflate the layout for this fragment
+
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,7 +60,7 @@ class ContactDetailFragment : Fragment() {
 //        val position= param2?.toInt()
         Log.d("DetailFragment", "initView() param2=$param2")
 
-        val img = binding.ivRestaurantLogo
+        val img = binding.ivDetailProfile
         val name = binding.tvDetailName
         val num = binding.tvDetailPhonenumber
         val address = binding.tvDetailAddress
