@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hotplacecontactapp.databinding.FragmentContactListBinding
 
@@ -87,17 +88,60 @@ class ContactListFragment : Fragment() {
 //        }
 
 
+
+
+
+
+
+
+
         adapter.itemClick=object : Adapter.ItemClick{
             override fun onClick(view: View, position: Int) {
+                Log.d("ListFragment","List clicked")
                 val data = adapter.mItems[position]
-                val fragment=ContactDetailFragment.newInstance(arrayListOf(data))
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.lo_fragmentLayout, fragment)
+                val fragmentToDetail=ContactDetailFragment.newInstance(arrayListOf(data))
+                requireActivity().supportFragmentManager.beginTransaction()     //트랜잭션
+                    .replace(R.id.lo_fragmentLayout, fragmentToDetail)
                     .addToBackStack(null)       //이전의 트랜잭션을 스택에 추가, 뒤로가기 누를시 이전의 프래그먼트로 돌아감
                     .commit()
-                Log.d("ContactListFragment","data=$data")
+                Log.d("ListFragment","data=$data")
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+        adapter.itemLongClick = object : Adapter.ItemLongClick {
+            override fun onLongClick(view: View, position: Int) {
+                Log.d("ListFragment","Bofore testlist.size=${testList.size}")
+                val ad = AlertDialog.Builder(requireContext())
+                ad.setIcon(R.drawable.ic_launcher_foreground)
+                ad.setTitle("목록 삭제")
+                ad.setMessage("목록을 정말로 삭제하시겠습니까?")
+                ad.setPositiveButton("확인") { dialog, _ ->
+                    Log.d("ListFragment","position=$position")
+                    testList.removeAt(position)
+                    adapter.notifyItemRemoved(position)
+                    Log.d("ListFragment","After testlist.size=${testList.size}")
+                }
+                ad.setNegativeButton("취소", null)
+                ad.show()
+
+            }
+        }
+
+
+
+
+
     }
 
     override fun onDestroyView() {

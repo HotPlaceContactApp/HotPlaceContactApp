@@ -30,7 +30,7 @@ class ContactDetailFragment : Fragment() {
 //            param1 = it.getString(ARG_PARAM1)
             param2=it.getParcelableArrayList(ARG_PARAM2)!!
 //            param2 = it.getString(ARG_PARAM2)
-            Log.d("ContactDetailFragment","param2=$param2")
+            Log.d("DetailFragment","param2=$param2")
         }
     }
 
@@ -52,7 +52,7 @@ class ContactDetailFragment : Fragment() {
     private fun initView(){
         val contactList: MutableList<ContactData> = mutableListOf()
 //        val position= param2?.toInt()
-        Log.d("MyPageFragment","initView() param2=$param2")
+        Log.d("DetailFragment","initView() param2=$param2")
 
         val img = binding.ivRestaurantLogo
         val name=binding.tvDetailName
@@ -60,7 +60,6 @@ class ContactDetailFragment : Fragment() {
         val address=binding.tvDetailAddress
         val instaId=binding.tvDetailInstarAddress
 
-//        Log.d("MyPageFragment","contactList.size=${contactList.size}")
 
 
         img.setImageURI(param2[0].profileImage)
@@ -69,15 +68,6 @@ class ContactDetailFragment : Fragment() {
         instaId.text = param2[0].instaAddress
         address.text=param2[0].address
 
-
-//        if (position!=null && position <= contactList.size) {
-//            Log.d("MyPageFragment","Check if inside")
-//            Log.d("MyPageFragment","contactList=${contactList[position]}")
-////            img.setImageResource(contactList[position].profileImage)
-//            name.text = contactList[position].name
-//            num.text = contactList[position].phoneNumber
-//            instaId.text = contactList[position].instaAddress
-//        }
 
     }
 
