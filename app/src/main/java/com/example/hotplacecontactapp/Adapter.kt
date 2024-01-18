@@ -20,13 +20,13 @@ class Adapter(val mItems: MutableList<ContactData>) : RecyclerView.Adapter<Adapt
         fun onLongClick(view: View, position: Int)
     }
 
-    interface StarClick {
-        fun onClick(view: View, position: Int)
-    }
+//    interface StarClick {
+//        fun onClick(view: View, position: Int)
+//    }
 
     var itemClick: ItemClick? = null
     var itemLongClick: ItemLongClick? = null
-    var starClick: StarClick? = null
+//    var starClick: StarClick? = null
     private var isFavorite = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {

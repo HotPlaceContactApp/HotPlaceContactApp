@@ -1,8 +1,6 @@
 package com.example.hotplacecontactapp
 
 
-import android.net.Uri
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager2.widget.ViewPager2
 import com.example.hotplacecontactapp.databinding.FragmentContactListBinding
 
 private const val ARG_PARAM1 = "param1"
@@ -65,13 +62,13 @@ class ContactListFragment : Fragment(), AddContactListener {
         binding.loRecyclerview.adapter = adapter
         binding.loRecyclerview.layoutManager = LinearLayoutManager(requireContext())
 
-
+        //아이템 클릭-디테일페이지 전환
         adapter.itemClick = object : Adapter.ItemClick {
             override fun onClick(view: View, position: Int) {
                 Log.d("ListFragment", "List clicked")
                 val data = adapter.mItems[position]
                 val fragmentToDetail = ContactDetailFragment.newInstance(arrayListOf(data))
-                requireActivity().supportFragmentManager.beginTransaction()     //트랜잭션
+                requireActivity().supportFragmentManager.beginTransaction()     //트랜잭션 시작
                     .replace(R.id.lo_fragmentLayout, fragmentToDetail)
                     .addToBackStack(null)       //이전의 트랜잭션을 스택에 추가, 뒤로가기 누를시 이전의 프래그먼트로 돌아감
                     .commit()
@@ -79,7 +76,7 @@ class ContactListFragment : Fragment(), AddContactListener {
             }
         }
 
-
+        //아이템 롱클릭 - 아이템 삭제
         adapter.itemLongClick = object : Adapter.ItemLongClick {
             override fun onLongClick(view: View, position: Int) {
                 Log.d("ListFragment", "List LongClicked")
@@ -97,6 +94,16 @@ class ContactListFragment : Fragment(), AddContactListener {
                 ad.show()
 
             }
+        }
+
+        //즐겨찾기 클릭 - 목록 전환
+        binding.loFavoriteLayout.setOnClickListener {
+            val favoriteList=ContactManager.contactList.filter{it.isFavorite}
+            val fragmentToFavorite=FavoriteListFragment.newInstance(favoriteList)
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.lo_fragmentLayout,fragmentToFavorite)
+                .addToBackStack(null)
+                .commit()
         }
     }
 

@@ -16,14 +16,14 @@ class FavoriteListFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private var param1: String? = null
+    private var param1: ArrayList<ContactData> = ArrayList()
     private var param2: String? = null
-
+    private lateinit var adapter: Adapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
+            param1 = it.getParcelableArrayList(ARG_PARAM1)!!
             param2 = it.getString(ARG_PARAM2)
         }
     }
@@ -44,6 +44,9 @@ class FavoriteListFragment : Fragment() {
     }
 
     private fun initView() {
+        val recData=param1
+        adapter= Adapter(recData)
+//        binding.
 
     }
 
@@ -54,11 +57,11 @@ class FavoriteListFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String) =
+        fun newInstance(param1: List<ContactData>) =
             FavoriteListFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+//                    putParcelableArrayList(ARG_PARAM1, param1)
+//                    putString(ARG_PARAM2, param2)
                 }
             }
     }
