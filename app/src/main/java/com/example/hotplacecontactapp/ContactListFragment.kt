@@ -1,10 +1,15 @@
 package com.example.hotplacecontactapp
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
 import com.example.hotplacecontactapp.databinding.FragmentContactListBinding
 
 private const val ARG_PARAM1 = "param1"
@@ -52,6 +57,63 @@ class ContactListFragment : Fragment() {
      */
 
     private fun initView() {
+        val testList = mutableListOf<ContactData>()
+        testList.add(ContactData(R.drawable.detail_burger_lotteria, "0000000000000", "s0", "s0", "www.ajkldjfkljlklldfkladfk.dkfjlkajldkfjlksdlf/ajdsklfjakldjfklsjdflkja;ldkjflkjskldkdialktnld", true))
+        testList.add(ContactData(R.drawable.detail_burger_kfc, "1111111111111", "s1", "s1", "www.ajkldjfkljlklldfkladfk.dkfjlkajldkfjlksdlf/ajdsklfjakldjfklsjdflkja;ldkjflkjskldkdialktnld", false))
+        testList.add(ContactData(R.drawable.detail_burger_mcdonald, "2222222222222", "s2", "s2", "www.ajkldjfkljlklldfkladfk.dkfjlkajldkfjlksdlf/ajdsklfjakldjfklsjdflkja;ldkjflkjskldkdialktnld", true))
+        testList.add(ContactData(R.drawable.detail_burger_king, "3333333333333", "s3", "s3", "www.ajkldjfkljlklldfkladfk.dkfjlkajldkfjlksdlf/ajdsklfjakldjfklsjdflkja;ldkjflkjskldkdialktnld", false))
+        testList.add(ContactData(R.drawable.detail_burger_momstouch, "4444444444444", "s4", "s4", "www.ajkldjfkljlklldfkladfk.dkfjlkajldkfjlksdlf/ajdsklfjakldjfklsjdflkja;ldkjflkjskldkdialktnld", true))
+        testList.add(ContactData(R.drawable.detail_burger_mosburger, "5555555555555", "s5", "s5", "www.ajkldjfkljlklldfkladfk.dkfjlkajldkfjlksdlf/ajdsklfjakldjfklsjdflkja;ldkjflkjskldkdialktnld", false))
+        testList.add(ContactData(R.drawable.detail_chicken_60, "6666666666666", "s6", "s6", "www.ajkldjfkljlklldfkladfk.dkfjlkajldkfjlksdlf/ajdsklfjakldjfklsjdflkja;ldkjflkjskldkdialktnld", true))
+        testList.add(ContactData(R.drawable.detail_chicken_bbq, "7777777777777", "s0", "s0", "www.ajkldjfkljlklldfkladfk.dkfjlkajldkfjlksdlf/ajdsklfjakldjfklsjdflkja;ldkjflkjskldkdialktnld", false))
+        testList.add(ContactData(R.drawable.detail_chicken_ddangddang, "8888888888888", "s1", "s1", "www.ajkldjfkljlklldfkladfk.dkfjlkajldkfjlksdlf/ajdsklfjakldjfklsjdflkja;ldkjflkjskldkdialktnld", true))
+        testList.add(ContactData(R.drawable.detail_chicken_goobne, "9999999999999", "s2", "s2", "www.ajkldjfkljlklldfkladfk.dkfjlkajldkfjlksdlf/ajdsklfjakldjfklsjdflkja;ldkjflkjskldkdialktnld", false))
+        testList.add(ContactData(R.drawable.detail_chicken_nene, "aaaaaaaaaaaaa", "s3", "s3", "www.ajkldjfkljlklldfkladfk.dkfjlkajldkfjlksdlf/ajdsklfjakldjfklsjdflkja;ldkjflkjskldkdialktnld", true))
+        testList.add(ContactData(R.drawable.detail_chicken_kyochon, "bbbbbbbbbbbbb", "s4", "s4", "www.ajkldjfkljlklldfkladfk.dkfjlkajldkfjlksdlf/ajdsklfjakldjfklsjdflkja;ldkjflkjskldkdialktnld", false))
+        testList.add(ContactData(R.drawable.detail_chicken_pericana, "ccccccccccccc", "s5", "s5", "www.ajkldjfkljlklldfkladfk.dkfjlkajldkfjlksdlf/ajdsklfjakldjfklsjdflkja;ldkjflkjskldkdialktnld", true))
+        testList.add(ContactData(R.drawable.detail_chicken_puradak, "ddddddddddddd", "s6", "s6", "www.ajkldjfkljlklldfkladfk.dkfjlkajldkfjlksdlf/ajdsklfjakldjfklsjdflkja;ldkjflkjskldkdialktnld", false))
+        testList.add(ContactData(R.drawable.detail_pizza_alvolo, "eeeeeeeeeeeee", "s7", "s7", "www.ajkldjfkljlklldfkladfk.dkfjlkajldkfjlksdlf/ajdsklfjakldjfklsjdflkja;ldkjflkjskldkdialktnld", true))
+        testList.add(ContactData(R.drawable.detail_pizza_banolim, "fffffffffffff", "s8", "s8", "www.ajkldjfkljlklldfkladfk.dkfjlkajldkfjlksdlf/ajdsklfjakldjfklsjdflkja;ldkjflkjskldkdialktnld", false))
+        testList.add(ContactData(R.drawable.detail_pizza_domino, "ggggggggggggg", "s9", "s9", "www.ajkldjfkljlklldfkladfk.dkfjlkajldkfjlksdlf/ajdsklfjakldjfklsjdflkja;ldkjflkjskldkdialktnld", true))
+
+        val adapter = Adapter(testList)
+        binding.loRecyclerview.adapter = adapter
+        binding.loRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+
+
+        adapter.itemClick = object : Adapter.ItemClick {
+            override fun onClick(view: View, position: Int) {
+//                val bundle = Bundle()
+//                bundle.putString("key", "value")
+//
+//                val fragmentB = ContactDetailFragment()
+//                fragmentB.setArguments(bundle)
+
+//                val bundle = Bundle()
+//                bundle.putString("frag", testList[position])
+                val dataToSend = adapter.mItems[position]
+                val fragment = ContactDetailFragment.newInstance(arrayListOf(dataToSend))
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.main_layout, fragment)
+                    .addToBackStack(null)
+                    .commit()
+
+
+//                val bundle = Bundle()
+//                bundle.putString("key", "value")
+
+//                val passBundleBFragment = PassBundleBFragment()
+//                passBundleBFragment.arguments = bundle parentFragmentManager.beginTransaction()
+//                    .replace(R.id.fragment_container_bundle, PassBundleFragment())
+//                    .commit()
+
+//                setFragmentResult("ListCar2AfterFragment", bundleOf(
+//                    "mygetData1" to testList[position].name.toString(),
+//                    "mygetData2" to testList[position])
+//                )
+            }
+        }
+
 
     }
 
