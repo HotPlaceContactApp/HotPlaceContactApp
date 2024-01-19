@@ -8,7 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hotplacecontactapp.adapter.Adapter
+import com.example.hotplacecontactapp.adapter.ContactAdapter
+import com.example.hotplacecontactapp.adapter.ContactAdapter.Companion.TYPE_LIST
 import com.example.hotplacecontactapp.data.ContactData
+import com.example.hotplacecontactapp.data.ContactManager
 import com.example.hotplacecontactapp.databinding.FragmentFavoriteListBinding
 
 private const val ARG_PARAM1 = "param1"
@@ -23,14 +26,14 @@ class FavoriteListFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private var param1: ArrayList<ContactData> = ArrayList()
+    private var param1: String? = null
     private var param2: String? = null
     private lateinit var adapter: Adapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getParcelableArrayList(ARG_PARAM1)!!
+            param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
     }
@@ -51,30 +54,19 @@ class FavoriteListFragment : Fragment() {
     }
 
     private fun initView() {
-        val recData=param1
-        Log.d("FavoriteFragment", "recData=$recData")
-        adapter= Adapter(recData)
-        binding.checkRecyclerView.adapter=adapter
+        val favoriteList: MutableList<ContactData> = ContactManager.contactList.filter { it.isFavorite }.toMutableList()
+        Log.d("FavoriteFragment", "recData=$favoriteList")
+        val contactAdapter= ContactAdapter(ContactAdapter.TYPE_LIST)
+        binding.checkRecyclerView.adapter=contactAdapter
         binding.checkRecyclerView.layoutManager=LinearLayoutManager(requireContext())
         Log.d("FavoriteFragment", "Star Clicked")
 
-//        isFavorite=recData[0].isFavorite
-//        if(!isFavorite){
-//
-//        }else{
-//
-//        }
 
-        adapter.starClick= object : Adapter.StarClick{
+        contactAdapter.starClick= object : ContactAdapter.StarClick{
             override fun onClick(view: View, position: Int) {
-                adapter.notifyItemChanged(position)
-                isFavorite=recData[0].isFavorite
-                if(!isFavorite){
-                    recData[0].isFavorite=true
-                }else{
-                    recData[0].isFavorite=false
-                }
-                adapter.mItems.filter{it.name==recData[0].name}.forEach { it.isFavorite= recData[0].isFavorite}
+                isFavorite=favoriteList[position].isFavorite
+                favoriteList[position].isFavorite = !isFavorite
+                ContactManager.contactList.filter{it.name==favoriteList[0].name}.forEach { it.isFavorite= favoriteList[0].isFavorite}
                 adapter.notifyDataSetChanged()
             }
         }
@@ -90,10 +82,10 @@ class FavoriteListFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: MutableList<ContactData>) =
+        fun newInstance(param1:String) =
             FavoriteListFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelableArrayList(ARG_PARAM1, ArrayList(param1))
+                    putString(ARG_PARAM1, param1)
 //                    putString(ARG_PARAM2, param2)
                 }
             }

@@ -9,8 +9,6 @@ import com.example.hotplacecontactapp.data.ContactData
 import com.example.hotplacecontactapp.R
 import com.example.hotplacecontactapp.databinding.ItemRecyclerViewListBinding
 
-//class Adapter:ListAdapter<ContactData, Adapter.Holder>(object : DiffUtil.ItemCallback<ContactData>() {
-// }
 class Adapter(val mItems: MutableList<ContactData>) : RecyclerView.Adapter<Adapter.Holder>() {
 
     interface ItemClick {

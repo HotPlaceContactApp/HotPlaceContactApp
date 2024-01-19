@@ -23,8 +23,13 @@ class ContactAdapter(var viewType: Int) :
         fun onLongClick(view: View, position: Int)
     }
 
+    interface StarClick {
+        fun onClick(view: View, position: Int)
+    }
+
     var itemClick: ItemClick? = null
     var itemLongClick: ItemLongClick? = null
+    var starClick: StarClick? = null
     private var isFavorite = false
 
     companion object {
@@ -81,6 +86,7 @@ class ContactAdapter(var viewType: Int) :
             itemLongClick?.onLongClick(it, position)
             return@OnLongClickListener true
         }
+
     }
 
     inner class ListViewHolder(private val binding: ItemRecyclerViewListBinding) :
