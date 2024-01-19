@@ -17,6 +17,9 @@
         <item name="colorAccent">@android:color/black</item>                    <!-- 하단 움직이는 바 색-->
 
     </style>
+    <style name="Theme.Design.NoActionBar" parent="Base.Theme.HotPlaceContactApp">
+
+    </style>
 
 
 

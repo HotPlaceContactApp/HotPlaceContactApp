@@ -49,7 +49,7 @@
                         android:textSize="100sp" />
                 </androidx.cardview.widget.CardView>
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/linlayHeader"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -61,44 +61,40 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="2dp"
-                        android:textSize="30sp" />
+                        android:textSize="30sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.cardview.widget.CardView
+                    <ImageView
                         android:id="@+id/cardMessage"
-                        android:layout_width="wrap_content"
+                        android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_marginHorizontal="2dp"
-                        app:cardBackgroundColor="#38BDFA"
-                        app:cardCornerRadius="1000dp">
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/cD_ic_message"
+                        android:padding="0dp"
+                        android:src="@drawable/img_3"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/cardCall"
+                        app:layout_constraintTop_toBottomOf="@+id/textName" />
 
-                        <ImageView
-                            android:id="@+id/imgMessage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:adjustViewBounds="true"
-                            android:contentDescription="@string/cD_ic_message"
-                            android:padding="10dp"
-                            android:src="@drawable/ic_message" />
-                    </androidx.cardview.widget.CardView>
 
-                    <androidx.cardview.widget.CardView
+                    <ImageView
                         android:id="@+id/cardCall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_marginHorizontal="2dp"
-                        app:cardBackgroundColor="#42E848"
-                        app:cardCornerRadius="1000dp">
-
-                        <ImageView
-                            android:id="@+id/imgCall"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:adjustViewBounds="true"
-                            android:contentDescription="@string/cD_ic_phone"
-                            android:padding="10dp"
-                            android:src="@drawable/ic_call" />
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/cD_ic_phone"
+                        android:padding="0dp"
+                        android:src="@drawable/img_2"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintEnd_toStartOf="@+id/cardMessage"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textName" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
                     android:id="@+id/linlayPhoneList"
