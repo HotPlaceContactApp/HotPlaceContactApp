@@ -22,11 +22,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hotplacecontactapp.R
 import com.example.hotplacecontactapp.adapter.ContactAdapter
+import com.example.hotplacecontactapp.data.ContactData
 import com.example.hotplacecontactapp.data.ContactManager
 import com.example.hotplacecontactapp.databinding.FragmentContactListBinding
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+
 
 
 class ContactListFragment : Fragment(), AddContactListener {
@@ -77,10 +79,12 @@ class ContactListFragment : Fragment(), AddContactListener {
         showViewTypeDialog()
         setItemTouchHelper()
         setAddContact()
+        countFavorite()
     }
 
     private fun setContactAdapter() {
         binding.loRecyclerview.apply {
+            binding.tvFavoriteNum.text = ContactManager.contactList.count { it.isFavorite }.toString()
             adapter = contactAdapter.also {
                 it.itemClick = object : ContactAdapter.ItemClick {
                     override fun onClick(view: View, position: Int) {
@@ -117,6 +121,15 @@ class ContactListFragment : Fragment(), AddContactListener {
             layoutManager = LinearLayoutManager(requireContext())
         }
         contactAdapter.submitList(ContactManager.getList())
+        binding.loFavoriteLayout.setOnClickListener {
+            val fragmentToFavorite= FavoriteListFragment.newInstance("favoriteList")
+            requireActivity().supportFragmentManager.beginTransaction()
+//                .replace(R.id.lo_recyclerview,fragmentToFavorite)
+                .replace(R.id.lo_fragmentLayout,fragmentToFavorite)
+                .addToBackStack(null)
+                .commit()
+        }
+
     }
 
     private fun showViewTypeDialog() {
@@ -181,9 +194,8 @@ class ContactListFragment : Fragment(), AddContactListener {
                         val height = (itemView.bottom - itemView.top).toFloat()
                         val width = height / 4
                         val paint = Paint()
-                        if (dX > 0) {  // 오른쪽으로 스와이프하는지 확인
-                            // ViewHolder의 백그라운드에 깔아줄 사각형의 크기와 색상을 지정
-                            paint.color = Color.parseColor("#00FF00")
+                        if (dX > 0) {
+                            paint.color = Color.parseColor("#B28CEA8C")
                             val background = RectF(
                                 itemView.left.toFloat() + dX,
                                 itemView.top.toFloat(),
@@ -192,14 +204,14 @@ class ContactListFragment : Fragment(), AddContactListener {
                             )
                             c.drawRect(background, paint)
 
-                            // 전화 아이콘과 표시될 위치를 지정하고 비트맵을 그려줌
-                            // 비트맵 이미지는 Image Asset 기능으로 추가하고 drawable 폴더에 위치하도록 함
                             icon = BitmapFactory.decodeResource(resources, R.drawable.ic_call)
+                            val iconTop = itemView.top.toFloat() + (height - width) / 2
+                            val iconLeft = itemView.left.toFloat() + width
                             val iconDst = RectF(
-                                itemView.left.toFloat() - 3 - width,
-                                itemView.top.toFloat() + width,
-                                itemView.left.toFloat() - width,
-                                itemView.bottom.toFloat() - width
+                                iconLeft,
+                                iconTop,
+                                iconLeft + width,
+                                iconTop + width
                             )
                             c.drawBitmap(icon, null, iconDst, null)
                         }
@@ -272,6 +284,10 @@ class ContactListFragment : Fragment(), AddContactListener {
         }
     }
 
+    private fun countFavorite(){
+        binding.tvFavoriteNum.text = ContactManager.contactList.count { it.isFavorite }.toString()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -289,6 +305,6 @@ class ContactListFragment : Fragment(), AddContactListener {
     }
 
     override fun onContactAdded() {
-        contactAdapter.submitList(ContactManager.getList())
+        contactAdapter.notifyDataSetChanged()
     }
 }

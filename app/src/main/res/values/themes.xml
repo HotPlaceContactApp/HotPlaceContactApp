@@ -17,7 +17,7 @@
         <item name="colorAccent">@android:color/black</item>                    <!-- 하단 움직이는 바 색-->
 
     </style>
-    <style name="Theme.Design.NoActionBar">
+    <style name="Theme.Design.NoActionBar" parent="Base.Theme.HotPlaceContactApp">
 
     </style>
 
@@ -25,8 +25,8 @@
 
     <!-- splash screen Theme -->
     <style name="AppTheme.Splash" parent="Theme.SplashScreen">
-        <item name="android:windowSplashScreenBackground">@color/black</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_logo</item>
+        <item name="android:windowSplashScreenBackground">@color/orange</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_logo_splash</item>
         <item name="android:windowSplashScreenAnimationDuration">1000</item>
         <item name="postSplashScreenTheme">@style/Theme.HotPlaceContactApp</item>
 
