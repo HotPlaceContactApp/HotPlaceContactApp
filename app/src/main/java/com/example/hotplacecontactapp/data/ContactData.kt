@@ -1,4 +1,4 @@
-package com.example.hotplacecontactapp
+package com.example.hotplacecontactapp.data
 
 import android.net.Uri
 import android.os.Parcelable

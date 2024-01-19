@@ -1,11 +1,12 @@
-package com.example.hotplacecontactapp
+package com.example.hotplacecontactapp.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hotplacecontactapp.data.ContactData
+import com.example.hotplacecontactapp.R
 import com.example.hotplacecontactapp.databinding.ItemRecyclerViewListBinding
 
 //class Adapter:ListAdapter<ContactData, Adapter.Holder>(object : DiffUtil.ItemCallback<ContactData>() {
@@ -57,10 +58,6 @@ class Adapter(val mItems: MutableList<ContactData>) : RecyclerView.Adapter<Adapt
                 R.drawable.ic_empty_star
             }
         )
-
-//        holder.star.setOnClickListener {
-//            starClick?.onClick(it,position)
-//        }
 
         holder.star.setOnClickListener {
             starClick?.onClick(it,position)

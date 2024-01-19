@@ -1,6 +1,7 @@
-package com.example.hotplacecontactapp
+package com.example.hotplacecontactapp.data
 
 import android.net.Uri
+import com.example.hotplacecontactapp.R
 
 object ContactManager {
     val contactList: MutableList<ContactData> = mutableListOf()
@@ -24,9 +25,12 @@ object ContactManager {
 //        testList.add(ContactData(R.drawable.detail_burger_lotteria, "fffffffffffff", "s8", "s8", "s8", false))
 //        testList.add(ContactData(R.drawable.detail_burger_lotteria, "ggggggggggggg", "s9", "s9", "s9", true))
     }
-
     fun addContactData(data: ContactData) {
         contactList.add(data)
+    }
+
+    fun removeContactData(position : Int) {
+        contactList.removeAt(position)
     }
 
     fun getList(): MutableList<ContactData> {

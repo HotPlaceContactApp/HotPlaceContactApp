@@ -9,7 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.hotplacecontactapp.adapter.Adapter
+import com.example.hotplacecontactapp.data.ContactData
+import com.example.hotplacecontactapp.data.ContactManager
 import com.example.hotplacecontactapp.databinding.FragmentContactListBinding
+import com.example.hotplacecontactapp.fragment.AddContactDialogFragment
+import com.example.hotplacecontactapp.fragment.AddContactListener
+import com.example.hotplacecontactapp.fragment.ContactDetailFragment
+import com.example.hotplacecontactapp.fragment.FavoriteListFragment
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -110,7 +117,7 @@ class ContactListFragment : Fragment(), AddContactListener {
         //즐겨찾기 클릭 - 목록 전환
         binding.loFavoriteLayout.setOnClickListener {
             val favoriteList: MutableList<ContactData> = ContactManager.contactList.filter { it.isFavorite }.toMutableList()
-            val fragmentToFavorite=FavoriteListFragment.newInstance(favoriteList)
+            val fragmentToFavorite= FavoriteListFragment.newInstance(favoriteList)
             requireActivity().supportFragmentManager.beginTransaction()
 //                .replace(R.id.lo_recyclerview,fragmentToFavorite)
                 .replace(R.id.lo_fragmentLayout,fragmentToFavorite)
@@ -146,5 +153,4 @@ class ContactListFragment : Fragment(), AddContactListener {
     override fun onContactAdded() {
     adapter.notifyDataSetChanged()
     }
-    val dd= ""
 }

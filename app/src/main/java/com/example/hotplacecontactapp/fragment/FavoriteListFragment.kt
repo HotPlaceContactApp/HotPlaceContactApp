@@ -1,4 +1,4 @@
-package com.example.hotplacecontactapp
+package com.example.hotplacecontactapp.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.hotplacecontactapp.adapter.Adapter
+import com.example.hotplacecontactapp.data.ContactData
 import com.example.hotplacecontactapp.databinding.FragmentFavoriteListBinding
 
 private const val ARG_PARAM1 = "param1"

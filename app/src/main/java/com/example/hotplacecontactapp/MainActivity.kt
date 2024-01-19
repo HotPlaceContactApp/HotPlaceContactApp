@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.viewpager2.widget.ViewPager2
+import com.example.hotplacecontactapp.adapter.ViewPager2Adapter
 import com.example.hotplacecontactapp.databinding.ActivityMainBinding
+import com.example.hotplacecontactapp.fragment.ContactListFragment
+import com.example.hotplacecontactapp.fragment.MyPageFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 // 10조 맛집 연락처 앱 파이팅!!
