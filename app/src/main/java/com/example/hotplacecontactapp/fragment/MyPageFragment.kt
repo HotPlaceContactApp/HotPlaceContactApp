@@ -28,61 +28,68 @@ class MyPageFragment : Fragment() {
     private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val data: Intent? = result.data
-            imgUri=Uri.parse(data?.getStringExtra("img"))
+            var phonelist= listOf<String>(data!!.getStringExtra("phone1")!!, data.getStringExtra("phone2")!!, data.getStringExtra("phone3")!!, data.getStringExtra("phone4")!!)
+            imgUri=Uri.parse(data.getStringExtra("img"))
             binding.imgPfp.setImageURI(imgUri)
-            binding.textName.text=data?.getStringExtra("name")
-            binding.textPhoneNumber.text=data?.getStringExtra("phone")
-            binding.textPhoneNumber1.text=data?.getStringExtra("phone1")
-            if(data?.getStringExtra("phone1").isNullOrEmpty().not()){
+            binding.textName.text= data.getStringExtra("name")
+            binding.textPhoneNumber.text= data.getStringExtra("phone")
+
+            phonelist=phonelist.filter { it.isNotEmpty() }
+            repeat(4-phonelist.size) {
+                phonelist=phonelist+""
+            }
+
+            binding.textPhoneNumber1.text=phonelist[0]
+            if(phonelist[0].isEmpty().not()){
                 binding.linlayPhone1.visibility= VISIBLE
             }
             else{
                 binding.linlayPhone1.visibility= GONE
             }
-            binding.textPhoneNumber2.text=data?.getStringExtra("phone2")
-            if(data?.getStringExtra("phone2").isNullOrEmpty().not()){
+            binding.textPhoneNumber2.text=phonelist[1]
+            if(phonelist[1].isEmpty().not()){
                 binding.linlayPhone2.visibility= VISIBLE
             }
             else{
                 binding.linlayPhone2.visibility= GONE
             }
-            binding.textPhoneNumber3.text=data?.getStringExtra("phone3")
-            if(data?.getStringExtra("phone3").isNullOrEmpty().not()){
+            binding.textPhoneNumber3.text=phonelist[2]
+            if(phonelist[2].isEmpty().not()){
                 binding.linlayPhone3.visibility= VISIBLE
             }
             else{
                 binding.linlayPhone3.visibility= GONE
             }
-            binding.textPhoneNumber4.text=data?.getStringExtra("phone4")
-            if(data?.getStringExtra("phone4").isNullOrEmpty().not()){
+            binding.textPhoneNumber4.text=phonelist[3]
+            if(phonelist[3].isEmpty().not()){
                 binding.linlayPhone4.visibility= VISIBLE
             }
             else{
                 binding.linlayPhone4.visibility= GONE
             }
-            binding.textEmail.text=data?.getStringExtra("email")
-            if(data?.getStringExtra("email").isNullOrEmpty().not()){
+            binding.textEmail.text= data.getStringExtra("email")
+            if(data.getStringExtra("email").isNullOrEmpty().not()){
                 binding.linlayEmail.visibility= VISIBLE
             }
             else{
                 binding.linlayEmail.visibility= GONE
             }
-            binding.textInsta.text=data?.getStringExtra("insta")
-            if(data?.getStringExtra("insta").isNullOrEmpty().not()){
+            binding.textInsta.text= data.getStringExtra("insta")
+            if(data.getStringExtra("insta").isNullOrEmpty().not()){
                 binding.linlayInsta.visibility= VISIBLE
             }
             else{
                 binding.linlayInsta.visibility= GONE
             }
-            binding.textWebsite.text=data?.getStringExtra("website")
-            if(data?.getStringExtra("website").isNullOrEmpty().not()){
+            binding.textWebsite.text= data.getStringExtra("website")
+            if(data.getStringExtra("website").isNullOrEmpty().not()){
                 binding.linlayWebsite.visibility= VISIBLE
             }
             else{
                 binding.linlayWebsite.visibility= GONE
             }
-            binding.textMemo.text=data?.getStringExtra("memo")
-            if(data?.getStringExtra("memo").isNullOrEmpty().not()){
+            binding.textMemo.text= data.getStringExtra("memo")
+            if(data.getStringExtra("memo").isNullOrEmpty().not()){
                 binding.linlayMemo.visibility= VISIBLE
             }
             else{

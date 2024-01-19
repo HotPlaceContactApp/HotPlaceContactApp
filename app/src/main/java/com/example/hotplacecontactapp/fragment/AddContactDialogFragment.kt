@@ -125,7 +125,7 @@ class AddContactDialogFragment : DialogFragment() {
     }
 
     private fun validAdd(contactData: ContactData) {
-        if (setMessageValidPhone().isBlank() && setMessageValidName().isBlank() && setMessageValidPhone().isBlank() && setMessageValidAddress().isBlank() && setMessageValidInsta().isBlank()) {
+        if (setMessageValidPhoto().isBlank() && setMessageValidName().isBlank() && setMessageValidPhone().isBlank() && setMessageValidAddress().isBlank() && setMessageValidInsta().isBlank()) {
             ContactManager.addContactData(contactData)
             listener?.onContactAdded()
             dismiss()

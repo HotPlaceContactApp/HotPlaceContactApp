@@ -1,10 +1,10 @@
 package com.example.hotplacecontactapp.fragment
 
+import android.content.Intent
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
 import android.media.AudioAttributes
 import android.media.RingtoneManager
 import android.net.Uri
@@ -89,15 +89,23 @@ class ContactDetailFragment : Fragment() {
         instaId.text = param2[0].instaAddress
         address.text = param2[0].address
 
+//        추가 부분 전화,메세지 클릭시 수행
+        binding.cardDetailCall.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${binding.tvDetailPhonenumber.text}"))
+            startActivity(intent)
+        }
+        binding.cardDetailMessage.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("sms:${binding.tvDetailPhonenumber.text}"))
+            startActivity(intent)
+        }
+
+
         val handler = Handler(Looper.getMainLooper())
-        binding.addContactBtn5m.setOnClickListener {
+        binding.btnDetailPackaging.setOnClickListener {
             handler.postDelayed({ eventNotification() }, 1000)
         }
-        binding.addContactBtn30m.setOnClickListener {
-            handler.postDelayed({ eventNotification() }, 3000)
-        }
-        binding.addContactBtn1h.setOnClickListener {
-            handler.postDelayed({ eventNotification() }, 5000)
+        binding.btnDetailReservation.setOnClickListener {
+            handler.postDelayed({ eventNotification() }, 1000)
         }
         
     }
@@ -140,8 +148,8 @@ class ContactDetailFragment : Fragment() {
         builder.run {
             setSmallIcon(R.mipmap.ic_launcher)
             setWhen(System.currentTimeMillis())
-            setContentTitle("연락처 알림")
-            setContentText("설정한 알림이 도착했습니다!!")
+            setContentTitle("HotPlace 맛집 연락처 알림")
+            setContentText("설정 하신 예약 알림 시간 입니다!!")
             setContentIntent(pendingIntent)
             setAutoCancel(true)
         }
