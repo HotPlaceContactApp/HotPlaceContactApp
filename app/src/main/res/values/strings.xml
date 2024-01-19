@@ -42,4 +42,6 @@
     <string name="valid_address">가게 주소를 입력해주세요.</string>
     <string name="valid_insta">가게인스타 아이디를 입력해주세요.</string>
     <string name="valid_instaFormat">\@없이 정확한 인스타 아이디를 입력해주세요.</string>
+    <string name="cD_ic_message">image of a speech bubble representing a message icon</string>
+    <string name="cD_ic_phone">image of a phone handle representing a call icon</string>
 </resources>
