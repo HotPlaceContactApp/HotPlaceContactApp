@@ -6,8 +6,8 @@
     </style>
 
     <style name="Theme.HotPlaceContactApp" parent="Base.Theme.HotPlaceContactApp" >
-        <item name="android:statusBarColor" tools:targetApi="l">@color/orange</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/orange</item>        <!-- 상태바 배경색 tool부분은 라이트모드,다크모드 선택할때 추가하는 부분 -->
+        <item name="android:windowLightStatusBar">true</item>                   <!-- 상태바 아이콘 색 true가 흰색 false가 검은색 -->
 
         <item name="colorPrimary">#f5a623</item>                                <!-- 배경 -->
 

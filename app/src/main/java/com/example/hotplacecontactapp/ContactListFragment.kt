@@ -197,7 +197,7 @@ class ContactListFragment : Fragment(), AddContactListener {
                 val data = contactAdapter.currentList[position]
                 val fragmentToDetail = ContactDetailFragment.newInstance(arrayListOf(data))
                 requireActivity().supportFragmentManager.beginTransaction()     //트랜잭션
-                    .replace(R.id.lo_fragmentLayout, fragmentToDetail)
+                    .replace(R.id.main_view_layout, fragmentToDetail)
                     .addToBackStack(null)       //이전의 트랜잭션을 스택에 추가, 뒤로가기 누를시 이전의 프래그먼트로 돌아감
                     .commit()
                 Log.d("ListFragment", "data=$data")

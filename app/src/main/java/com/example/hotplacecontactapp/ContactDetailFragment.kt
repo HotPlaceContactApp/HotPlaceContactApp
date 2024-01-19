@@ -1,5 +1,6 @@
 package com.example.hotplacecontactapp
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -77,6 +78,16 @@ class ContactDetailFragment : Fragment() {
         num.text = param2[0].phoneNumber
         instaId.text = param2[0].instaAddress
         address.text = param2[0].address
+
+//        추가 부분
+        binding.cardDetailCall.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${binding.tvDetailPhonenumber.text}"))
+            startActivity(intent)
+        }
+        binding.cardDetailMessage.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("sms:${binding.tvDetailPhonenumber.text}"))
+            startActivity(intent)
+        }
 
 
     }

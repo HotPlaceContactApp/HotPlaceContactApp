@@ -87,6 +87,8 @@ class ContactAdapter(private var viewType: Int) :
             with(binding) {
                 ivListProfile.setImageURI(contact.profileImage)
                 tvListName.text = contact.name
+//                추가
+                tvListNumber.text = contact.phoneNumber
                 ivStar.setImageResource(
                     if (contact.isFavorite) R.drawable.ic_yellow_star else R.drawable.ic_empty_star
                 )
@@ -109,6 +111,8 @@ class ContactAdapter(private var viewType: Int) :
             with(binding) {
                 ivGridProfile.setImageURI(contact.profileImage)
                 tvGridName.text = contact.name
+//                추가
+                tvGridNumber.text = contact.phoneNumber
             }
         }
     }
