@@ -20,7 +20,6 @@ private const val ARG_PARAM2 = "param2"
 
 class FavoriteListFragment : Fragment() {
 
-
     private var _binding: FragmentFavoriteListBinding?=null
     private var isFavorite = false
 

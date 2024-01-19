@@ -30,6 +30,7 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
+
 class ContactListFragment : Fragment(), AddContactListener {
     private var _binding: FragmentContactListBinding? = null
     private val binding get() = _binding!!
