@@ -1,4 +1,4 @@
-package com.example.hotplacecontactapp
+package com.example.hotplacecontactapp.fragment
 
 import android.app.Activity
 import android.content.Intent
@@ -11,6 +11,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.hotplacecontactapp.EditPageActivity
 import com.example.hotplacecontactapp.databinding.FragmentMyPageBinding
 
 private const val ARG_PARAM1 = "param1"

@@ -1,24 +1,18 @@
-package com.example.hotplacecontactapp
+package com.example.hotplacecontactapp.fragment
 
 import android.app.Activity
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
-import android.media.AudioAttributes
-import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.NotificationCompat
 import androidx.fragment.app.DialogFragment
+import com.example.hotplacecontactapp.R
+import com.example.hotplacecontactapp.data.ContactData
+import com.example.hotplacecontactapp.data.ContactManager
 import com.example.hotplacecontactapp.databinding.AddcontactLayoutDialogBinding
 
 class AddContactDialogFragment : DialogFragment() {
