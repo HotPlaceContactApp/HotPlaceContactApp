@@ -31,6 +31,34 @@ class MyPageFragment : Fragment() {
             binding.imgPfp.setImageURI(imgUri)
             binding.textName.text=data?.getStringExtra("name")
             binding.textPhoneNumber.text=data?.getStringExtra("phone")
+            binding.textPhoneNumber1.text=data?.getStringExtra("phone1")
+            if(data?.getStringExtra("phone1").isNullOrEmpty().not()){
+                binding.linlayPhone1.visibility= VISIBLE
+            }
+            else{
+                binding.linlayPhone1.visibility= GONE
+            }
+            binding.textPhoneNumber2.text=data?.getStringExtra("phone2")
+            if(data?.getStringExtra("phone2").isNullOrEmpty().not()){
+                binding.linlayPhone2.visibility= VISIBLE
+            }
+            else{
+                binding.linlayPhone2.visibility= GONE
+            }
+            binding.textPhoneNumber3.text=data?.getStringExtra("phone3")
+            if(data?.getStringExtra("phone3").isNullOrEmpty().not()){
+                binding.linlayPhone3.visibility= VISIBLE
+            }
+            else{
+                binding.linlayPhone3.visibility= GONE
+            }
+            binding.textPhoneNumber4.text=data?.getStringExtra("phone4")
+            if(data?.getStringExtra("phone4").isNullOrEmpty().not()){
+                binding.linlayPhone4.visibility= VISIBLE
+            }
+            else{
+                binding.linlayPhone4.visibility= GONE
+            }
             binding.textEmail.text=data?.getStringExtra("email")
             if(data?.getStringExtra("email").isNullOrEmpty().not()){
                 binding.linlayEmail.visibility= VISIBLE
@@ -96,6 +124,10 @@ class MyPageFragment : Fragment() {
             intent.putExtra("img", imgUri.toString())
             intent.putExtra("name", binding.textName.text.toString())
             intent.putExtra("phone", binding.textPhoneNumber.text.toString())
+            intent.putExtra("phone1", binding.textPhoneNumber1.text.toString())
+            intent.putExtra("phone2", binding.textPhoneNumber2.text.toString())
+            intent.putExtra("phone3", binding.textPhoneNumber3.text.toString())
+            intent.putExtra("phone4", binding.textPhoneNumber4.text.toString())
             intent.putExtra("email", binding.textEmail.text.toString())
             intent.putExtra("insta", binding.textInsta.text.toString())
             intent.putExtra("website", binding.textWebsite.text.toString())
@@ -116,6 +148,10 @@ class MyPageFragment : Fragment() {
         binding.imgPfp.setImageURI(imgUri)
         binding.textName.text=defaultStringList[0]
         binding.textPhoneNumber.text=defaultStringList[1]
+        binding.linlayPhone1.visibility=GONE
+        binding.linlayPhone2.visibility=GONE
+        binding.linlayPhone3.visibility=GONE
+        binding.linlayPhone4.visibility=GONE
         binding.linlayEmail.visibility=GONE
         binding.linlayInsta.visibility=GONE
         binding.linlayWebsite.visibility=GONE
