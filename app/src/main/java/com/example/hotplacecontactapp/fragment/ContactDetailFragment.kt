@@ -101,14 +101,11 @@ class ContactDetailFragment : Fragment() {
 
 
         val handler = Handler(Looper.getMainLooper())
-        binding.addContactBtn5m.setOnClickListener {
+        binding.btnDetailPackaging.setOnClickListener {
             handler.postDelayed({ eventNotification() }, 1000)
         }
-        binding.addContactBtn30m.setOnClickListener {
-            handler.postDelayed({ eventNotification() }, 3000)
-        }
-        binding.addContactBtn1h.setOnClickListener {
-            handler.postDelayed({ eventNotification() }, 5000)
+        binding.btnDetailReservation.setOnClickListener {
+            handler.postDelayed({ eventNotification() }, 1000)
         }
         
     }
@@ -151,8 +148,8 @@ class ContactDetailFragment : Fragment() {
         builder.run {
             setSmallIcon(R.mipmap.ic_launcher)
             setWhen(System.currentTimeMillis())
-            setContentTitle("연락처 알림")
-            setContentText("설정한 알림이 도착했습니다!!")
+            setContentTitle("HotPlace 맛집 연락처 알림")
+            setContentText("설정 하신 예약 알림 시간 입니다!!")
             setContentIntent(pendingIntent)
             setAutoCancel(true)
         }
