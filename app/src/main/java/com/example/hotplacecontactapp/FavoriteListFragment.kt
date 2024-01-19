@@ -1,18 +1,23 @@
 package com.example.hotplacecontactapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.hotplacecontactapp.databinding.FragmentContactListBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.hotplacecontactapp.databinding.FragmentFavoriteListBinding
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
 class FavoriteListFragment : Fragment() {
-    private var _binding: FragmentContactListBinding? = null
+
+
+    private var _binding: FragmentFavoriteListBinding?=null
+    private var isFavorite = false
 
     private val binding get() = _binding!!
 
@@ -33,7 +38,7 @@ class FavoriteListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentContactListBinding.inflate(inflater, container, false)
+        _binding = FragmentFavoriteListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -45,8 +50,34 @@ class FavoriteListFragment : Fragment() {
 
     private fun initView() {
         val recData=param1
+        Log.d("FavoriteFragment", "recData=$recData")
         adapter= Adapter(recData)
-//        binding.
+        binding.checkRecyclerView.adapter=adapter
+        binding.checkRecyclerView.layoutManager=LinearLayoutManager(requireContext())
+        Log.d("FavoriteFragment", "Star Clicked")
+
+//        isFavorite=recData[0].isFavorite
+//        if(!isFavorite){
+//
+//        }else{
+//
+//        }
+
+        adapter.starClick= object : Adapter.StarClick{
+            override fun onClick(view: View, position: Int) {
+                adapter.notifyItemChanged(position)
+                isFavorite=recData[0].isFavorite
+                if(!isFavorite){
+                    recData[0].isFavorite=true
+                }else{
+                    recData[0].isFavorite=false
+                }
+                adapter.mItems.filter{it.name==recData[0].name}.forEach { it.isFavorite= recData[0].isFavorite}
+                adapter.notifyDataSetChanged()
+            }
+        }
+
+
 
     }
 
@@ -57,10 +88,10 @@ class FavoriteListFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: List<ContactData>) =
+        fun newInstance(param1: MutableList<ContactData>) =
             FavoriteListFragment().apply {
                 arguments = Bundle().apply {
-//                    putParcelableArrayList(ARG_PARAM1, param1)
+                    putParcelableArrayList(ARG_PARAM1, ArrayList(param1))
 //                    putString(ARG_PARAM2, param2)
                 }
             }

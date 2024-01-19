@@ -62,6 +62,16 @@ class ContactListFragment : Fragment(), AddContactListener {
         binding.loRecyclerview.adapter = adapter
         binding.loRecyclerview.layoutManager = LinearLayoutManager(requireContext())
 
+        setAddContact()
+
+        binding.tvFavoriteNum.text = ContactManager.contactList.count { it.isFavorite }.toString()
+
+        adapter.starClick= object : Adapter.StarClick {
+            override fun onClick(view: View, position: Int) {
+                binding.tvFavoriteNum.text = ContactManager.contactList.count { it.isFavorite }.toString()
+            }
+        }
+
         //아이템 클릭-디테일페이지 전환
         adapter.itemClick = object : Adapter.ItemClick {
             override fun onClick(view: View, position: Int) {
@@ -89,6 +99,7 @@ class ContactListFragment : Fragment(), AddContactListener {
                     ContactManager.contactList.removeAt(position)
                     Log.d("ListFragment", "List Removed")
                     adapter.notifyDataSetChanged()
+                    binding.tvFavoriteNum.text=ContactManager.contactList.count{it.isFavorite}.toString()
                 }
                 ad.setNegativeButton("취소", null)
                 ad.show()
@@ -98,9 +109,10 @@ class ContactListFragment : Fragment(), AddContactListener {
 
         //즐겨찾기 클릭 - 목록 전환
         binding.loFavoriteLayout.setOnClickListener {
-            val favoriteList=ContactManager.contactList.filter{it.isFavorite}
+            val favoriteList: MutableList<ContactData> = ContactManager.contactList.filter { it.isFavorite }.toMutableList()
             val fragmentToFavorite=FavoriteListFragment.newInstance(favoriteList)
             requireActivity().supportFragmentManager.beginTransaction()
+//                .replace(R.id.lo_recyclerview,fragmentToFavorite)
                 .replace(R.id.lo_fragmentLayout,fragmentToFavorite)
                 .addToBackStack(null)
                 .commit()

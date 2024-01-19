@@ -6,14 +6,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".FavoriteListFragment">
 
-
+        >
     <!--                리사이클러뷰 영역                -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lo_favorite_recyclerview"
+        android:id="@+id/checkRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
     </androidx.recyclerview.widget.RecyclerView>
     <!--                리사이클러뷰 영역                -->
