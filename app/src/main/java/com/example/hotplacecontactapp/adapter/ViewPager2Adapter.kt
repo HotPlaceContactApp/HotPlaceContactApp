@@ -1,9 +1,8 @@
-package com.example.hotplacecontactapp
+package com.example.hotplacecontactapp.adapter
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.hotplacecontactapp.MainActivity
 
 class ViewPager2Adapter(fragmentActivity: MainActivity) : FragmentStateAdapter(fragmentActivity) {
     private var fragments: ArrayList<Fragment> = ArrayList()

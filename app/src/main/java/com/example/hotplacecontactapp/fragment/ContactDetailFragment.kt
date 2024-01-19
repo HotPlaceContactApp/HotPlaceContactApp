@@ -1,4 +1,4 @@
-package com.example.hotplacecontactapp
+package com.example.hotplacecontactapp.fragment
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -17,7 +17,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.NotificationCompat
-import androidx.core.content.res.ResourcesCompat
+import com.example.hotplacecontactapp.MainActivity
+import com.example.hotplacecontactapp.R
+import com.example.hotplacecontactapp.data.ContactData
 import com.example.hotplacecontactapp.databinding.ActivityContactDetailFragmentBinding
 
 
