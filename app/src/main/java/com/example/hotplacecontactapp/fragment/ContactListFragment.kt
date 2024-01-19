@@ -288,6 +288,6 @@ class ContactListFragment : Fragment(), AddContactListener {
     }
 
     override fun onContactAdded() {
-        contactAdapter.submitList(ContactManager.getList())
+        contactAdapter.notifyDataSetChanged()
     }
 }
