@@ -88,7 +88,7 @@ class ContactListFragment : Fragment(), AddContactListener {
                         val data = contactAdapter.currentList[position]
                         val fragmentToDetail = ContactDetailFragment.newInstance(arrayListOf(data))
                         requireActivity().supportFragmentManager.beginTransaction()     //트랜잭션
-                            .replace(R.id.lo_fragmentLayout, fragmentToDetail)
+                            .replace(R.id.main_view_layout, fragmentToDetail)
                             .addToBackStack(null)       //이전의 트랜잭션을 스택에 추가, 뒤로가기 누를시 이전의 프래그먼트로 돌아감
                             .commit()
                         Log.d("ListFragment", "data=$data")
@@ -229,8 +229,43 @@ class ContactListFragment : Fragment(), AddContactListener {
         startActivity(intent)
     }
 
+    private fun setItemClick() {
+        contactAdapter.itemClick = object : ContactAdapter.ItemClick {
+            override fun onClick(view: View, position: Int) {
+                Log.d("ListFragment", "List clicked")
+                val data = contactAdapter.currentList[position]
+                val fragmentToDetail = ContactDetailFragment.newInstance(arrayListOf(data))
+                requireActivity().supportFragmentManager.beginTransaction()     //트랜잭션
+                    .replace(R.id.lo_fragmentLayout, fragmentToDetail)
+                    .addToBackStack(null)       //이전의 트랜잭션을 스택에 추가, 뒤로가기 누를시 이전의 프래그먼트로 돌아감
+                    .commit()
+                Log.d("ListFragment", "data=$data")
+            }
+        }
+    }
+
+    private fun setItemLongClick() {
+        contactAdapter.itemLongClick = object : ContactAdapter.ItemLongClick {
+            override fun onLongClick(view: View, position: Int) {
+                Log.d("ListFragment", "List LongClicked")
+                val ad = AlertDialog.Builder(requireContext())
+                ad.setIcon(R.drawable.ic_launcher_foreground)
+                ad.setTitle("목록 삭제")
+                ad.setMessage("목록을 정말로 삭제하시겠습니까?")
+                ad.setPositiveButton("확인") { dialog, _ ->
+                    Log.d("ListFragment", "position=$position")
+                    ContactManager.contactList.removeAt(position)
+                    Log.d("ListFragment", "List Removed")
+                    contactAdapter.notifyDataSetChanged()
+                }
+                ad.setNegativeButton("취소", null)
+                ad.show()
+            }
+        }
+    }
+
     private fun setAddContact() {
-        binding.fabAddContact.setOnClickListener {
+        binding.cardContactListPlus.setOnClickListener {
             val addContactDialog = AddContactDialogFragment()
             addContactDialog.listener = this
             addContactDialog.show(requireActivity().supportFragmentManager, "AddContactDialog")
