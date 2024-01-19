@@ -1,4 +1,4 @@
-package com.example.hotplacecontactapp
+package com.example.hotplacecontactapp.fragment
 
 
 import android.net.Uri
@@ -20,6 +20,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hotplacecontactapp.R
+import com.example.hotplacecontactapp.adapter.ContactAdapter
+import com.example.hotplacecontactapp.data.ContactManager
 import com.example.hotplacecontactapp.databinding.FragmentContactListBinding
 
 private const val ARG_PARAM1 = "param1"
@@ -34,7 +37,6 @@ class ContactListFragment : Fragment(), AddContactListener {
 
     private var param1: String? = null
     private var param2: String? = null
-    private lateinit var adapter: Adapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,13 +77,43 @@ class ContactListFragment : Fragment(), AddContactListener {
         showViewTypeDialog()
         setItemTouchHelper()
         setAddContact()
-        setItemClick()
-        setItemLongClick()
     }
 
     private fun setContactAdapter() {
         binding.loRecyclerview.apply {
-            adapter = contactAdapter
+            adapter = contactAdapter.also {
+                it.itemClick = object : ContactAdapter.ItemClick {
+                    override fun onClick(view: View, position: Int) {
+                        Log.d("ListFragment", "List clicked")
+                        val data = contactAdapter.currentList[position]
+                        val fragmentToDetail = ContactDetailFragment.newInstance(arrayListOf(data))
+                        requireActivity().supportFragmentManager.beginTransaction()     //트랜잭션
+                            .replace(R.id.main_view_layout, fragmentToDetail)
+                            .addToBackStack(null)       //이전의 트랜잭션을 스택에 추가, 뒤로가기 누를시 이전의 프래그먼트로 돌아감
+                            .commit()
+                        Log.d("ListFragment", "data=$data")
+                    }
+                }
+
+                it.itemLongClick = object : ContactAdapter.ItemLongClick {
+                    override fun onLongClick(view: View, position: Int) {
+                        Log.d("ListFragment", "List LongClicked")
+                        val ad = AlertDialog.Builder(requireContext())
+                        ad.setIcon(R.drawable.ic_launcher_foreground)
+                        ad.setTitle("목록 삭제")
+                        ad.setMessage("목록을 정말로 삭제하시겠습니까?")
+                        ad.setPositiveButton("확인") { dialog, _ ->
+                            Log.d("ListFragment", "position=$position")
+                            ContactManager.removeContactData(position)
+                            Log.d("ListFragment", "List Removed")
+                            contactAdapter.submitList(ContactManager.getList())
+                            contactAdapter.notifyItemRemoved(position)
+                        }
+                        ad.setNegativeButton("취소", null)
+                        ad.show()
+                    }
+                }
+            }
             layoutManager = LinearLayoutManager(requireContext())
         }
         contactAdapter.submitList(ContactManager.getList())
@@ -93,27 +125,23 @@ class ContactListFragment : Fragment(), AddContactListener {
                 .setTitle("뷰 타입 선택")
                 .setMessage("원하는 뷰 타입을 선택해주세요.")
                 .setPositiveButton("Grid View Type") { dialog, _ ->
-                    setupContactAdapter(ContactAdapter.TYPE_GRID, 2)
+                    changeAdapterViewType(ContactAdapter.TYPE_GRID, 2)
                 }
                 .setNegativeButton("List View Type") { dialog, _ ->
-                    setupContactAdapter(ContactAdapter.TYPE_LIST)
+                    changeAdapterViewType(ContactAdapter.TYPE_LIST)
                 }.show()
         }
     }
 
-    private fun setupContactAdapter(adapterType: Int, spanCount: Int = 1) {
-        val contactAdapter = ContactAdapter(adapterType)
-
+    private fun changeAdapterViewType(adapterType: Int, spanCount: Int = 1) {
         binding.loRecyclerview.apply {
-            adapter = contactAdapter
-
             layoutManager = if (adapterType == ContactAdapter.TYPE_GRID) {
                 GridLayoutManager(requireContext(), spanCount)
             } else {
                 LinearLayoutManager(requireContext())
             }
+            contactAdapter.viewType = adapterType
         }
-        contactAdapter.submitList(ContactManager.getList())
     }
 
     private fun setItemTouchHelper() {
@@ -133,7 +161,8 @@ class ContactListFragment : Fragment(), AddContactListener {
 
                     // 여기에서 전화 거는 동작을 수행하도록 구현
                     makePhoneCall(contact.phoneNumber)
-                    contactAdapter.notifyDataSetChanged()
+                    contactAdapter.notifyItemChanged(viewHolder.adapterPosition)
+
                 }
 
                 override fun onChildDraw(
@@ -155,13 +184,23 @@ class ContactListFragment : Fragment(), AddContactListener {
                         if (dX > 0) {  // 오른쪽으로 스와이프하는지 확인
                             // ViewHolder의 백그라운드에 깔아줄 사각형의 크기와 색상을 지정
                             paint.color = Color.parseColor("#00FF00")
-                            val background = RectF(itemView.left.toFloat() + dX, itemView.top.toFloat(), itemView.left.toFloat(), itemView.bottom.toFloat())
+                            val background = RectF(
+                                itemView.left.toFloat() + dX,
+                                itemView.top.toFloat(),
+                                itemView.left.toFloat(),
+                                itemView.bottom.toFloat()
+                            )
                             c.drawRect(background, paint)
 
                             // 전화 아이콘과 표시될 위치를 지정하고 비트맵을 그려줌
                             // 비트맵 이미지는 Image Asset 기능으로 추가하고 drawable 폴더에 위치하도록 함
                             icon = BitmapFactory.decodeResource(resources, R.drawable.ic_call)
-                            val iconDst = RectF(itemView.left.toFloat() - 3  - width, itemView.top.toFloat() + width, itemView.left.toFloat() - width, itemView.bottom.toFloat() - width)
+                            val iconDst = RectF(
+                                itemView.left.toFloat() - 3 - width,
+                                itemView.top.toFloat() + width,
+                                itemView.left.toFloat() - width,
+                                itemView.bottom.toFloat() - width
+                            )
                             c.drawBitmap(icon, null, iconDst, null)
                         }
                     }
@@ -197,7 +236,7 @@ class ContactListFragment : Fragment(), AddContactListener {
                 val data = contactAdapter.currentList[position]
                 val fragmentToDetail = ContactDetailFragment.newInstance(arrayListOf(data))
                 requireActivity().supportFragmentManager.beginTransaction()     //트랜잭션
-                    .replace(R.id.main_view_layout, fragmentToDetail)
+                    .replace(R.id.lo_fragmentLayout, fragmentToDetail)
                     .addToBackStack(null)       //이전의 트랜잭션을 스택에 추가, 뒤로가기 누를시 이전의 프래그먼트로 돌아감
                     .commit()
                 Log.d("ListFragment", "data=$data")
@@ -226,7 +265,7 @@ class ContactListFragment : Fragment(), AddContactListener {
     }
 
     private fun setAddContact() {
-        binding.fabAddContact.setOnClickListener {
+        binding.cardContactListPlus.setOnClickListener {
             val addContactDialog = AddContactDialogFragment()
             addContactDialog.listener = this
             addContactDialog.show(requireActivity().supportFragmentManager, "AddContactDialog")
@@ -250,6 +289,6 @@ class ContactListFragment : Fragment(), AddContactListener {
     }
 
     override fun onContactAdded() {
-    contactAdapter.notifyDataSetChanged()
+        contactAdapter.submitList(ContactManager.getList())
     }
 }

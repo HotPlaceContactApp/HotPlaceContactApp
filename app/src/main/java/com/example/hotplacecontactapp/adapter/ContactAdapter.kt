@@ -1,4 +1,4 @@
-package com.example.hotplacecontactapp
+package com.example.hotplacecontactapp.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,11 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hotplacecontactapp.data.ContactData
+import com.example.hotplacecontactapp.R
 import com.example.hotplacecontactapp.databinding.ItemRecyclerViewGridBinding
 import com.example.hotplacecontactapp.databinding.ItemRecyclerViewListBinding
 
 
-class ContactAdapter(private var viewType: Int) :
+class ContactAdapter(var viewType: Int) :
     ListAdapter<ContactData, RecyclerView.ViewHolder>(diffUtil) {
 
     interface ItemClick {

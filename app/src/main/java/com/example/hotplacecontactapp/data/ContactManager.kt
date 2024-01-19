@@ -1,16 +1,17 @@
-package com.example.hotplacecontactapp
+package com.example.hotplacecontactapp.data
 
 import android.net.Uri
+import com.example.hotplacecontactapp.R
 
 object ContactManager {
     val contactList: MutableList<ContactData> = mutableListOf()
 
     init {
         contactList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_kfc), "kfc", "02-2564-8826", "서울 강남구 역삼동 16", "https://www.instagram.com/seouleating/", true))
-        contactList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_lotteria), "lotteria", "02-4856-9645", "서울 강남구 논현동 59-9", "https://www.instagram.com/explore/tags/%EC%9D%B8%EC%8A%A4%ED%83%80%EB%A7%9B%EC%A7%91/?hl=ko", false))
-        contactList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_king), "burger king", "02-8544-2556", "서울 강남구 역삼동 133", "https://www.instagram.com/explore/tags/%EC%9D%B8%EC%8A%A4%ED%83%80%EB%A7%9B%EC%A7%91/top/", true))
-        contactList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_mcdonald), "mcdonald", "02-1566-5593", "서울 강남구 논현동 1-11", "https://www.instagram.com/seouleating/", false))
-        contactList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_momstouch), "mom's touch", "02-1515-1675", "서울 강남구 역삼동 35", "https://www.instagram.com/explore/tags/%EC%9D%B8%EC%8A%A4%ED%83%80%EB%A7%9B%EC%A7%91/?hl=ko", false))
+        contactList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_lotteria), "롯데리아", "02-4856-9645", "서울 강남구 논현동 59-9", "https://www.instagram.com/explore/tags/%EC%9D%B8%EC%8A%A4%ED%83%80%EB%A7%9B%EC%A7%91/?hl=ko", false))
+        contactList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_king), "버거킹", "02-8544-2556", "서울 강남구 역삼동 133", "https://www.instagram.com/explore/tags/%EC%9D%B8%EC%8A%A4%ED%83%80%EB%A7%9B%EC%A7%91/top/", true))
+        contactList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_mcdonald), "맥도날드", "02-1566-5593", "서울 강남구 논현동 1-11", "https://www.instagram.com/seouleating/", false))
+        contactList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_burger_momstouch), "맘스터치", "02-1515-1675", "서울 강남구 역삼동 35", "https://www.instagram.com/explore/tags/%EC%9D%B8%EC%8A%A4%ED%83%80%EB%A7%9B%EC%A7%91/?hl=ko", false))
         contactList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_chicken_60), "60계 치킨", "02-2513-5152",  "서울 강남구 논현동 126-5", "https://www.instagram.com/explore/tags/%EC%9D%B8%EC%8A%A4%ED%83%80%EB%A7%9B%EC%A7%91/top/", false))
         contactList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_chicken_bbq), "bbq", "02-5642-4516", "서울 강남구 역삼동 128-5", "https://www.instagram.com/seouleating/", false))
         contactList.add(ContactData(Uri.parse("android.resource://com.example.hotplacecontactapp/" + R.drawable.detail_chicken_ddangddang), "땅땅치킨", "02-5466-8921", "서울 강남구 논현동 11", "https://www.instagram.com/explore/tags/%EC%9D%B8%EC%8A%A4%ED%83%80%EB%A7%9B%EC%A7%91/?hl=ko", false))
@@ -49,9 +50,12 @@ object ContactManager {
 //        testList.add(ContactData(R.drawable.detail_burger_lotteria, "fffffffffffff", "s8", "s8", "s8", false))
 //        testList.add(ContactData(R.drawable.detail_burger_lotteria, "ggggggggggggg", "s9", "s9", "s9", true))
     }
-
     fun addContactData(data: ContactData) {
         contactList.add(data)
+    }
+
+    fun removeContactData(position : Int) {
+        contactList.removeAt(position)
     }
 
     fun getList(): MutableList<ContactData> {
