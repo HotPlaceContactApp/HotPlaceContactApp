@@ -22,11 +22,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hotplacecontactapp.R
 import com.example.hotplacecontactapp.adapter.ContactAdapter
+import com.example.hotplacecontactapp.data.ContactData
 import com.example.hotplacecontactapp.data.ContactManager
 import com.example.hotplacecontactapp.databinding.FragmentContactListBinding
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+
 
 
 class ContactListFragment : Fragment(), AddContactListener {
@@ -77,10 +79,12 @@ class ContactListFragment : Fragment(), AddContactListener {
         showViewTypeDialog()
         setItemTouchHelper()
         setAddContact()
+        countFavorite()
     }
 
     private fun setContactAdapter() {
         binding.loRecyclerview.apply {
+            binding.tvFavoriteNum.text = ContactManager.contactList.count { it.isFavorite }.toString()
             adapter = contactAdapter.also {
                 it.itemClick = object : ContactAdapter.ItemClick {
                     override fun onClick(view: View, position: Int) {
@@ -117,6 +121,15 @@ class ContactListFragment : Fragment(), AddContactListener {
             layoutManager = LinearLayoutManager(requireContext())
         }
         contactAdapter.submitList(ContactManager.getList())
+        binding.loFavoriteLayout.setOnClickListener {
+            val fragmentToFavorite= FavoriteListFragment.newInstance("favoriteList")
+            requireActivity().supportFragmentManager.beginTransaction()
+//                .replace(R.id.lo_recyclerview,fragmentToFavorite)
+                .replace(R.id.lo_fragmentLayout,fragmentToFavorite)
+                .addToBackStack(null)
+                .commit()
+        }
+
     }
 
     private fun showViewTypeDialog() {
@@ -269,6 +282,10 @@ class ContactListFragment : Fragment(), AddContactListener {
             addContactDialog.listener = this
             addContactDialog.show(requireActivity().supportFragmentManager, "AddContactDialog")
         }
+    }
+
+    private fun countFavorite(){
+        binding.tvFavoriteNum.text = ContactManager.contactList.count { it.isFavorite }.toString()
     }
 
     override fun onDestroyView() {
