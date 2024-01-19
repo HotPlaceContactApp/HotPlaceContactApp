@@ -45,12 +45,16 @@
 
             <TextView
                 android:id="@+id/tv_ListName"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="4dp"
                 android:text="@string/list_name"
                 android:textSize="20sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                app:layout_constraintEnd_toStartOf="@+id/ivStar"
                 app:layout_constraintStart_toEndOf="@id/cv_ListProfile"
                 app:layout_constraintTop_toTopOf="parent" />
 
