@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/addContact_cv_storePhoto"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="120dp"
+        app:cardElevation="0dp"
+        app:strokeWidth="1dp">
+
+        <ImageView
+            android:id="@+id/addContact_iv_storePhoto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:scaleType="centerCrop"
+            android:src="@drawable/addcontact_ic_addpicture" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/addContact_tv_photoError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:paddingStart="4dp"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/addContact_et_storeName"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/orange"
+        android:hint="@string/placeholder_name"
+        android:textCursorDrawable="@color/orange"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/addContact_tv_nameError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="4dp"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/addContact_et_storePhone"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/orange"
+        android:hint="@string/palceholder_phone"
+        android:inputType="phone"
+        android:maxLength="15"
+        android:textCursorDrawable="@color/orange"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/addContact_tv_phoneError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="4dp"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="14sp" />
+
+
+    <EditText
+        android:id="@+id/addContact_et_storeAddress"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/orange"
+        android:hint="@string/placeholder_address"
+        android:textCursorDrawable="@color/orange"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/addContact_tv_addressError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="4dp"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="14sp" />
+
+
+    <EditText
+        android:id="@+id/addContact_et_storeInsta"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/orange"
+        android:hint="@string/placeholder_insta"
+        android:textCursorDrawable="@color/orange"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/addContact_tv_instaError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="4dp"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="14sp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/addContactBtnNegative"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@drawable/dialog_layout_button"
+            android:elevation="3dp"
+            app:layout_constraintBottom_toBottomOf="@+id/addContactBtnPositive"
+            app:layout_constraintEnd_toStartOf="@+id/addContactBtnPositive"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/addContactBtnPositive">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:shadowColor="#E8E9EC"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="5"
+                android:text="돌아가기"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/addContactBtnPositive"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@drawable/dialog_layout_button"
+            android:elevation="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/addContactBtnNegative"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:shadowColor="@color/white"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="5"
+                android:text="추가하기"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="24dp">-->
+
+    <!--        <Button-->
+    <!--            android:id="@+id/addContact_btn_negative"-->
+    <!--            android:layout_width="120dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:text="@string/btn_negative" />-->
+
+    <!--        <View-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_height="0dp"-->
+    <!--            android:layout_weight="1" />-->
+
+    <!--        <Button-->
+    <!--            android:id="@+id/addContact_btn_positive"-->
+    <!--            android:layout_width="120dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:text="@string/btn_positive" />-->
+
+
+    <!--    </LinearLayout>-->
+
+
+</LinearLayout>

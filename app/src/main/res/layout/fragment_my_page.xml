@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.MyPageFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:id="@+id/scrollMyPage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/conlayMyPage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/linlayMyPage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardPfp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="40dp"
+                    app:cardCornerRadius="1000dp">
+
+                    <ImageView
+                        android:id="@+id/imgPfp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/cD_imgPfp"
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:id="@+id/textPfp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="100sp" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/linlayHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/textName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="2dp"
+                        android:textSize="30sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/cardMessage"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/cD_ic_message"
+                        android:padding="0dp"
+                        android:src="@drawable/img_3"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/cardCall"
+                        app:layout_constraintTop_toBottomOf="@+id/textName" />
+
+
+                    <ImageView
+                        android:id="@+id/cardCall"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/cD_ic_phone"
+                        android:padding="0dp"
+                        android:src="@drawable/img_2"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintEnd_toStartOf="@+id/cardMessage"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textName" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:id="@+id/linlayPhoneList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/linlayPhoneMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:id="@+id/textPhoneLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_weight="1"
+                            android:text="@string/phoneMain"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/textPhoneNumber"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="45dp"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/linlayPhone1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:id="@+id/textPhoneLabel1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_weight="1"
+                            android:text="@string/phone1"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/textPhoneNumber1"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="45dp"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/linlayPhone2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:id="@+id/textPhoneLabel2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_weight="1"
+                            android:text="@string/phone2"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/textPhoneNumber2"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="45dp"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/linlayPhone3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:id="@+id/textPhoneLabel3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_weight="1"
+                            android:text="@string/phone3"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/textPhoneNumber3"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="45dp"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/linlayPhone4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:id="@+id/textPhoneLabel4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_weight="1"
+                            android:text="@string/phone4"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/textPhoneNumber4"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="45dp"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linlayEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:id="@+id/textEmailLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="45dp"
+                        android:layout_weight="1"
+                        android:text="@string/email"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/textEmail"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="45dp"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linlayInsta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:id="@+id/textInstaLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="45dp"
+                        android:layout_weight="1"
+                        android:text="@string/insta"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/textInsta"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="45dp"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linlayWebsite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:id="@+id/textWebsiteLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="45dp"
+                        android:layout_weight="1"
+                        android:text="@string/website"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/textWebsite"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="45dp"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linlayMemo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:id="@+id/textMemoLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="45dp"
+                        android:layout_weight="1"
+                        android:text="@string/memo"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/textMemo"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="45dp"
+                        android:textSize="20sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="@string/edit"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</FrameLayout>

@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".EditPageActivity"
+    android:background="@color/white">
+
+    <ScrollView
+        android:id="@+id/scrollMyPage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/viewDivider"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/conlayMyPage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/linlayMyPage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardPfp"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginVertical="40dp"
+                        app:cardCornerRadius="1000dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/imgPfp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@string/cD_imgPfp"
+                            android:scaleType="centerCrop"
+                            android:background="@color/lightgray"/>
+
+                        <TextView
+                            android:id="@+id/textPfp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="100sp" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardAddImg"
+                        android:layout_width="40sp"
+                        android:layout_height="40sp"
+                        app:cardCornerRadius="1000dp"
+                        app:layout_constraintBottom_toBottomOf="@id/cardPfp"
+                        app:layout_constraintEnd_toEndOf="@id/cardPfp">
+
+                        <ImageView
+                            android:id="@+id/imgPlus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/cD_imgPlus"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_add"
+                            android:background="@color/lightgray"/>
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:id="@+id/linlayHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:gravity="center">
+
+                    <EditText
+                        android:id="@+id/textName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="2dp"
+                        android:textSize="30sp"
+                        android:autofillHints="name"
+                        android:hint="@string/hint_name"
+                        android:inputType="textPersonName"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linlayPhoneList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/linlayPhoneMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:id="@+id/textPhoneLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_weight="1"
+                            android:text="@string/phoneMain"
+                            android:textSize="20sp" />
+
+                        <EditText
+                            android:id="@+id/textPhoneNumber"
+                            android:layout_width="140dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="85dp"
+                            android:hint="@string/hint_phone"
+                            android:inputType="phone"
+                            android:textSize="20sp"
+                            android:autofillHints="phone"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/linlayPhone1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:id="@+id/textPhoneLabel1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_weight="1"
+                            android:text="@string/phone1"
+                            android:textSize="20sp" />
+
+                        <EditText
+                            android:id="@+id/textPhoneNumber1"
+                            android:layout_width="140dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp"
+                            android:autofillHints="phone"
+                            android:hint="@string/hint_phone"
+                            android:inputType="phone"
+                            android:textSize="20sp" />
+
+                        <ImageView
+                            android:id="@+id/imgMinus1"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="25dp"
+                            android:src="@drawable/ic_minus"
+                            android:contentDescription="@string/cD_imgMinus"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/linlayPhone2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:id="@+id/textPhoneLabel2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_weight="1"
+                            android:text="@string/phone2"
+                            android:textSize="20sp" />
+
+                        <EditText
+                            android:id="@+id/textPhoneNumber2"
+                            android:layout_width="140dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp"
+                            android:hint="@string/hint_phone"
+                            android:inputType="phone"
+                            android:textSize="20sp"
+                            android:autofillHints="phone"/>
+
+                        <ImageView
+                            android:id="@+id/imgMinus2"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="25dp"
+                            android:src="@drawable/ic_minus"
+                            android:contentDescription="@string/cD_imgMinus"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/linlayPhone3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:id="@+id/textPhoneLabel3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_weight="1"
+                            android:text="@string/phone3"
+                            android:textSize="20sp" />
+
+                        <EditText
+                            android:id="@+id/textPhoneNumber3"
+                            android:layout_width="140dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp"
+                            android:hint="@string/hint_phone"
+                            android:inputType="phone"
+                            android:textSize="20sp"
+                            android:autofillHints="phone"/>
+
+                        <ImageView
+                            android:id="@+id/imgMinus3"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="25dp"
+                            android:src="@drawable/ic_minus"
+                            android:contentDescription="@string/cD_imgMinus"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/linlayPhone4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:id="@+id/textPhoneLabel4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="45dp"
+                            android:layout_weight="1"
+                            android:text="@string/phone4"
+                            android:textSize="20sp" />
+
+                        <EditText
+                            android:id="@+id/textPhoneNumber4"
+                            android:layout_width="140dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp"
+                            android:hint="@string/hint_phone"
+                            android:inputType="phone"
+                            android:textSize="20sp"
+                            android:autofillHints="phone"/>
+
+                        <ImageView
+                            android:id="@+id/imgMinus4"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="25dp"
+                            android:src="@drawable/ic_minus"
+                            android:contentDescription="@string/cD_imgMinus"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textAddPhonenumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:text="@string/add_phone"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linlayEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:id="@+id/textEmailLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="45dp"
+                        android:layout_weight="1"
+                        android:text="@string/email"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/textEmail"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="45dp"
+                        android:hint="@string/hint_email"
+                        android:inputType="textWebEmailAddress"
+                        android:textSize="20sp"
+                        android:autofillHints="emailAddress"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linlayInsta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:id="@+id/textInstaLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="45dp"
+                        android:layout_weight="1"
+                        android:text="@string/insta"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/textInsta"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="45dp"
+                        android:hint="@string/hint_insta"
+                        android:textSize="20sp"
+                        android:autofillHints="instagram url"
+                        android:inputType="text"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linlayWebsite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:id="@+id/textWebsiteLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="45dp"
+                        android:layout_weight="1"
+                        android:text="@string/website"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/textWebsite"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="45dp"
+                        android:hint="@string/hint_website"
+                        android:inputType="textWebEmailAddress"
+                        android:textSize="20sp"
+                        android:autofillHints="website url"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linlayMemo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:id="@+id/textMemoLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="45dp"
+                        android:layout_weight="1"
+                        android:text="@string/memo"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/textMemo"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="45dp"
+                        android:hint="@string/hint_memo"
+                        android:inputType="textMultiLine"
+                        android:textSize="20sp"
+                        android:autofillHints="memo"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_margin="20dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/cD_imgBack"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <View
+        android:id="@+id/viewDivider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/linlaySaveOrQuit"
+        app:layout_constraintTop_toBottomOf="@id/scrollMyPage"/>
+
+    <LinearLayout
+        android:id="@+id/linlaySaveOrQuit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewDivider">
+
+        <TextView
+            android:id="@+id/textExitButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="@string/quit"
+            android:textSize="30sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="15dp"
+            android:background="#A8A8A8" />
+
+        <TextView
+            android:id="@+id/textSaveButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="@string/save"
+            android:textSize="30sp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
